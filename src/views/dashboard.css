@@ -1,0 +1,10 @@
+.menu-button {
+    -fx-background-color: #3a3535;
+    -fx-text-fill : #ff9000;
+    -fx-cursor: hand;
+    -fx-padding: 0 8;
+}
+
+.menu-button:hover {
+    -fx-background-color: #232020;
+}
