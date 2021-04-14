@@ -16,7 +16,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="64.0" prefWidth="900.0" style="-fx-background-color: #232020;">
@@ -136,24 +135,225 @@
       </VBox>
       <StackPane layoutX="198.0" layoutY="64.0" prefHeight="537.0" prefWidth="704.0">
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="537.0" prefWidth="647.0">
-               <content>
-                  <Pane prefHeight="535.0" prefWidth="705.0">
+            <Pane prefHeight="535.0" prefWidth="705.0">
+               <children>
+                  <Label layoutX="36.0" layoutY="14.0" text="Usuários" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Line endX="15.94921875" layoutX="117.0" layoutY="49.0" startX="-80.0" />
+                  <HBox layoutX="36.0" layoutY="75.0" prefHeight="47.0" prefWidth="633.0" style="-fx-background-color: #fff;">
                      <children>
-                        <Label layoutX="36.0" layoutY="14.0" text="Usuários" textAlignment="CENTER">
+                        <Label prefHeight="47.0" prefWidth="187.0" text="Nome">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
+                           <padding>
+                              <Insets left="8.0" right="8.0" />
+                           </padding>
                         </Label>
-                        <Line endX="15.94921875" layoutX="117.0" layoutY="49.0" startX="-80.0" />
-                        <HBox layoutX="36.0" layoutY="75.0" prefHeight="47.0" prefWidth="633.0" style="-fx-background-color: #fff;" />
+                        <Label prefHeight="47.0" prefWidth="134.0" text="Login">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="8.0" right="8.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="47.0" prefWidth="132.0" text="Cargo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="8.0" right="8.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="47.0" prefWidth="82.0" text="Ativo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="8.0" right="8.0" />
+                           </padding>
+                        </Label>
                      </children>
-                     <padding>
-                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                     </padding>
-                  </Pane>
-               </content>
-            </ScrollPane>
+                  </HBox>
+                  <Button layoutX="572.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" text="Adicionar" textFill="#f4f4f4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="12.0" fitWidth="12.0">
+                           <image>
+                              <Image url="@../res/images/plus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ScrollPane hbarPolicy="NEVER" layoutX="37.0" layoutY="133.0" prefHeight="383.0" prefWidth="633.0">
+                     <content>
+                        <VBox prefHeight="375.0" prefWidth="633.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="633.0" style="-fx-background-color: #3a3535;">
+                                 <children>
+                                    <Label prefHeight="47.0" prefWidth="198.0" text="Guilherme Weissheimer" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="134.0" text="gw" textFill="#f4f4f4">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="132.0" text="Guarda" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="82.0" text="Sim" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #3a3535; -fx-cursor: hand;">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0">
+                                             <image>
+                                                <Image url="@../res/images/edit.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #3a3535; -fx-cursor: hand;">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0">
+                                             <image>
+                                                <Image url="@../res/images/delete.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="633.0" style="-fx-background-color: #3a3535;">
+                                 <children>
+                                    <Label prefHeight="47.0" prefWidth="198.0" text="Gabriel Guimarães" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="134.0" text="gf" textFill="#f4f4f4">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="132.0" text="Guarda" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="82.0" text="Sim" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #3a3535; -fx-cursor: hand;">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0">
+                                             <image>
+                                                <Image url="@../res/images/edit.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #3a3535; -fx-cursor: hand;">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0">
+                                             <image>
+                                                <Image url="@../res/images/delete.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="633.0" style="-fx-background-color: #3a3535;">
+                                 <children>
+                                    <Label prefHeight="47.0" prefWidth="198.0" text="Crystopher Carvalho" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="134.0" text="cc" textFill="#f4f4f4">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="132.0" text="Guarda" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label prefHeight="47.0" prefWidth="82.0" text="Sim" textFill="#f4f4f4">
+                                       <padding>
+                                          <Insets left="8.0" right="8.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #3a3535; -fx-cursor: hand;">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0">
+                                             <image>
+                                                <Image url="@../res/images/edit.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #3a3535; -fx-cursor: hand;">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0">
+                                             <image>
+                                                <Image url="@../res/images/delete.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </Pane>
          </children>
       </StackPane>
    </children>

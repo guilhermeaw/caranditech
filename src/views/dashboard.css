@@ -8,3 +8,10 @@
 .menu-button:hover {
     -fx-background-color: #232020;
 }
+
+.add-button {
+    -fx-background-color: #ff9000;
+    -fx-text-fill : #f5f5f5;
+    -fx-cursor: hand;
+    -fx-padding: 0 8;
+}
