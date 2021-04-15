@@ -1,11 +1,15 @@
 package services;
 
+import common.Credentials;
 import db.managers.UserManager;
 import models.User;
 import utils.ApplicationUtilities;
 
 public class LoginService {
-    public static void doLogin(String login, String password) throws Exception {
+    public static void doLogin(Credentials credentials) throws Exception {
+        String login = credentials.getLogin();
+        String password = credentials.getPassword();
+
         if (login == null || password == null) {
             // TODO
         }

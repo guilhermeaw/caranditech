@@ -1,12 +1,12 @@
 package controllers;
 
+import common.Credentials;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.LoginService;
 import services.SceneChangerService;
-import views.Main;
 
 import java.io.IOException;
 
@@ -36,7 +36,7 @@ public class LoginController {
             String login = loginField.getText();
             String password = passwordField.getText();
 
-            LoginService.doLogin(login, password);
+            LoginService.doLogin(new Credentials(login, password));
 
             SceneChangerService.changeSceneTo("dashboard.fxml");
         } catch (Exception e) {
