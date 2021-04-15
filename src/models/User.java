@@ -1,22 +1,14 @@
 package models;
 
-public class User {
-    private int id;
+import common.Identity;
+
+public class User extends Identity {
     private String name;
     private String login;
     private String password;
-    private int state;
     private int occupationId;
 
     public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -41,14 +33,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public int getOccupationId() {
