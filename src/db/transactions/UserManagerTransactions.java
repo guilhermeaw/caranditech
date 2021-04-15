@@ -49,4 +49,15 @@ public class UserManagerTransactions {
     public List<User> getAll(Database db) throws Exception {
         return null;
     }
+
+    public User getByLoginAndPassword(String login, String password, Database db) throws Exception {
+        Schema.Users U = Schema.Users.table;
+
+        String sql = U.select +
+                    " where " + U.columns.LOGIN + " = " + db.quote(login) +
+                    " and " + U.columns.PASSWORD + " = " + db.quote(password) +
+                    " and " + U.columns.STATE + " != " + User.STATE_DELETED;
+
+        return db.fetchOne(sql, U.fetcher);
+    }
 }

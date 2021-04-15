@@ -76,4 +76,14 @@ public class UserManager implements DefaultManager<User> {
             db.release();
         }
     }
+
+    public User getByLoginAndPassword(String login, String password) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getByLoginAndPassword(login, password, db);
+        } finally {
+            db.release();
+        }
+    }
 }
