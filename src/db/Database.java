@@ -14,7 +14,7 @@ public class Database {
 
     public Database() {
         try {
-            // Load db.porperties file configs
+            // Load db.properties file config
             Properties prop = new Properties();
             prop.load(new FileInputStream("db.properties"));
             String dbDriver = prop.getProperty("db.driver");
