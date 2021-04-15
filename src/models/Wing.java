@@ -2,11 +2,11 @@ package models;
 
 import common.Identity;
 
-public class Occupation extends Identity {
+public class Wing extends Identity {
     private String name;
     private String description;
 
-    public Occupation() {
+    public Wing() {
     }
 
     public String getName() {
