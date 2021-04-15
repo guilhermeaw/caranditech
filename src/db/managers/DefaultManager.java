@@ -3,13 +3,13 @@ package db.managers;
 import java.util.List;
 
 public interface DefaultManager<T> {
-    public void create( T value );
+    public void create( T value ) throws Exception;
 
-    public void update( T value );
+    public void update( T value ) throws Exception;
 
-    public void delete( T value );
+    public void delete( T value ) throws Exception;
 
-    public T getById( int id );
+    public T getById( int id ) throws Exception;
 
-    public List<T> getAll();
+    public List<T> getAll() throws Exception;
 }

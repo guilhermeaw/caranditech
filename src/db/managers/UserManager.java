@@ -23,33 +23,57 @@ public class UserManager implements DefaultManager<User> {
     }
 
     @Override
-    public void create(User user) {
+    public void create(User user) throws Exception {
         Database db = Database.getInstance();
 
         try {
             transactions.create(user, db);
-        } catch (Exception e) {
-
+        } finally {
+            db.release();
         }
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.update(user, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(User user) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.delete(user, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public User getById(int id) {
-        return null;
+    public User getById(int id) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getById(id, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public List<User> getAll() {
-        return null;
+    public List<User> getAll() throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getAll(db);
+        } finally {
+            db.release();
+        }
     }
 }
