@@ -25,7 +25,6 @@ public class SignupController {
     private Button signinLink;
 
     public SignupController() {
-
     }
 
     public void handleSignup() {

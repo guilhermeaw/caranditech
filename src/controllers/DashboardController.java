@@ -32,6 +32,8 @@ public class DashboardController implements Initializable {
     public void handleChangePane(ActionEvent actionEvent) {
         if (actionEvent.getSource() == usersButton) {
             loadPane("/views/components/usersPane.fxml");
+        } else if (actionEvent.getSource() == employeesButton) {
+            loadPane("/views/components/employeesPane.fxml");
         }
     }
 
