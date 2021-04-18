@@ -1,5 +1,6 @@
 package db;
 
+import db.fetchers.OccupationFetcher;
 import db.fetchers.UserFetcher;
 
 public class Schema {
@@ -47,6 +48,52 @@ public class Schema {
                         NAME      + ", " +
                         LOGIN     + ", " +
                         PASSWORD  + ", " +
+                        STATE;
+            }
+        }
+    }
+
+    public static class Occupations
+    {
+        public String name = "occupations";
+
+        public static final Occupations table = new Users( null );
+        public final Columns columns;
+
+        public final OccupationFetcher fetcher = new OccupationFetcher();
+
+        public final String select;
+
+        private Occupations( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String NAME;
+            public String DESCRIPTION;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID          = alias + "id";
+                NAME        = alias + "name";
+                DESCRIPTION = alias + "description";
+                STATE       = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID          + ", " +
+                        NAME        + ", " +
+                        DESCRIPTION + ", " +
                         STATE;
             }
         }
