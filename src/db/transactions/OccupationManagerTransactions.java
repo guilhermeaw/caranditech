@@ -60,7 +60,8 @@ public class OccupationManagerTransactions {
     public List<Occupation> getAll(Database db) throws Exception {
         Schema.Occupations OC = Schema.Occupations.table;
 
-        String sql = OC.select;
+        String sql = OC.select +
+                " where " + OC.columns.STATE + " <> " + Occupation.STATE_DELETED;
 
         return db.fetchMany(sql, OC.fetcher);
     }

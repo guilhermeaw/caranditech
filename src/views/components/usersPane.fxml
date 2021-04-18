@@ -33,8 +33,8 @@
       </Button>
       <TableView layoutX="34.0" layoutY="70.0" prefHeight="453.0" prefWidth="637.0">
          <columns>
-            <TableColumn prefWidth="412.0" text="Nome" />
-            <TableColumn prefWidth="224.0" text="Login" />
+            <TableColumn prefWidth="291.0" text="Nome" />
+            <TableColumn prefWidth="259.0" text="Login" />
          </columns>
       </TableView>
    </children>

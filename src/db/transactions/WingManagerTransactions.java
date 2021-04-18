@@ -2,7 +2,6 @@ package db.transactions;
 
 import db.Database;
 import db.Schema;
-import models.User;
 import models.Wing;
 
 import java.util.List;
@@ -60,7 +59,8 @@ public class WingManagerTransactions {
     public List<Wing> getAll(Database db) throws Exception {
         Schema.Wings W = Schema.Wings.table;
 
-        String sql = W.select;
+        String sql = W.select +
+                " where " + W.columns.STATE + " <> " + Wing.STATE_DELETED;;
 
         return db.fetchMany(sql, W.fetcher);
     }
