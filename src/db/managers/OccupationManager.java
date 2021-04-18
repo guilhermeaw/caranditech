@@ -1,5 +1,6 @@
 package db.managers;
 
+import db.Database;
 import db.transactions.OccupationManagerTransactions;
 import db.transactions.UserManagerTransactions;
 import models.Occupation;
@@ -23,27 +24,57 @@ public class OccupationManager implements DefaultManager<Occupation> {
     }
 
     @Override
-    public void create(Occupation value) throws Exception {
+    public void create(Occupation occupation) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.create(occupation, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void update(Occupation value) throws Exception {
+    public void update(Occupation occupation) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.update(occupation, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void delete(Occupation value) throws Exception {
+    public void delete(Occupation occupation) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.delete(occupation, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
     public Occupation getById(int id) throws Exception {
-        return null;
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getById(id, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
     public List<Occupation> getAll() throws Exception {
-        return null;
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getAll(db);
+        } finally {
+            db.release();
+        }
     }
 }
