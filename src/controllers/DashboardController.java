@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import services.LoginService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,9 +15,6 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
     @FXML
     private StackPane dashboardStackPane;
-
-    @FXML
-    private Button usersButton;
 
     @FXML
     private Button employeesButton;
@@ -30,17 +28,27 @@ public class DashboardController implements Initializable {
     }
 
     public void handleChangePane(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == usersButton) {
-            loadPane("/views/components/usersPane.fxml");
-        } else if (actionEvent.getSource() == employeesButton) {
+        if (actionEvent.getSource() == employeesButton) {
             loadPane("/views/components/employeesPane.fxml");
         } else if (actionEvent.getSource() == wingsCellsButton) {
             loadPane("/views/components/wingsCellsPane.fxml");
         }
     }
 
-    private void loadDefaultPane() {
+    public void handleEditUser() {
         loadPane("/views/components/usersPane.fxml");
+    }
+
+    public void handleLogout() {
+        try {
+            LoginService.doLogout();
+        } catch (Exception e) {
+            System.out.println("Erro ao deslogar da aplicação");
+        }
+    }
+
+    private void loadDefaultPane() {
+        loadPane("/views/components/employeesPane.fxml");
     }
 
     private void loadPane(String fxmlSrc) {
@@ -49,8 +57,7 @@ public class DashboardController implements Initializable {
 
             dashboardStackPane.getChildren().setAll(pane);
         } catch (Exception e) {
-            e.printStackTrace();
-            //System.out.println("Erro ao trocar painel do dashboard: " + e.getMessage());
+            System.out.println("Erro ao trocar painel do dashboard: " + e.getMessage());
         }
     }
 }

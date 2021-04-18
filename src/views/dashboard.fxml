@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
@@ -22,31 +21,28 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Ellipse fill="#f4f4f4" layoutX="854.0" layoutY="32.0" radiusX="20.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView layoutX="838.0" layoutY="16.0">
-               <image>
-                  <Image url="@../res/images/menu-user.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <VBox layoutY="64.0" prefHeight="537.0" prefWidth="199.0" style="-fx-background-color: #3a3535;">
-         <children>
-            <Button fx:id="usersButton" alignment="BASELINE_LEFT" layoutX="34.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleChangePane" prefHeight="32.0" prefWidth="180.0" styleClass="menu-button" text="Usuários" textFill="#ff9000">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="4.0" />
-               </VBox.margin>
+            <Button layoutX="775.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleEditUser" styleClass="header-button">
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0">
+                  <ImageView fitHeight="32.0" fitWidth="32.0">
                      <image>
-                        <Image url="@../res/images/user.png" />
+                        <Image url="@../res/images/menu-user.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
+            <Button layoutX="838.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLogout" styleClass="header-button">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0">
+                     <image>
+                        <Image url="@../res/images/power.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <VBox layoutY="64.0" prefHeight="537.0" prefWidth="199.0" style="-fx-background-color: #3a3535;">
+         <children>
             <Button fx:id="employeesButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleChangePane" prefHeight="32.0" prefWidth="180.0" styleClass="menu-button" text="Funcionários" textFill="#ff9000">
                <font>
                   <Font name="System Bold" size="12.0" />

@@ -23,4 +23,10 @@ public class LoginService {
             throw new Exception("Usuário ou senha incorretos");
         }
     }
+
+    public static void doLogout() throws Exception {
+        ApplicationUtilities.getInstance().setActiveUser(null);
+
+        SceneChangerService.changeSceneTo("login.fxml");
+    }
 }
