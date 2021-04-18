@@ -6,6 +6,5 @@ module CarandiTechWithSceneBuilder {
     requires java.sql;
 
     opens views;
-    opens views.components;
     opens controllers to javafx.fxml;
 }

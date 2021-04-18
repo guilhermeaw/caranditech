@@ -3,11 +3,15 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class DashboardController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class DashboardController implements Initializable {
     @FXML
     private StackPane dashboardStackPane;
 
@@ -20,21 +24,29 @@ public class DashboardController {
     @FXML
     private Button wingsCellsButton;
 
-    public DashboardController() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadDefaultPane();
     }
 
     public void handleChangePane(ActionEvent actionEvent) {
         if (actionEvent.getSource() == usersButton) {
-            loadPane("usersPane.fxml");
+            loadPane("/views/components/usersPane.fxml");
         }
+    }
+
+    private void loadDefaultPane() {
+        loadPane("/views/components/usersPane.fxml");
     }
 
     private void loadPane(String fxmlSrc) {
         try {
             Pane pane = FXMLLoader.load(getClass().getResource(fxmlSrc));
 
+            dashboardStackPane.getChildren().setAll(pane);
         } catch (Exception e) {
-            System.out.println("Erro ao trocar painel do dashboard");
+            e.printStackTrace();
+            //System.out.println("Erro ao trocar painel do dashboard: " + e.getMessage());
         }
     }
 }
