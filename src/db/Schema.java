@@ -30,7 +30,6 @@ public class Schema {
             public String LOGIN;
             public String PASSWORD;
             public String STATE;
-            public String REF_OCCUPATION;
 
             public Columns( String alias )
             {
@@ -39,7 +38,6 @@ public class Schema {
                 LOGIN          = alias + "login";
                 PASSWORD       = alias + "password";
                 STATE          = alias + "state";
-                REF_OCCUPATION = alias + "ref_occupation";
             }
 
             @Override
@@ -49,8 +47,7 @@ public class Schema {
                         NAME      + ", " +
                         LOGIN     + ", " +
                         PASSWORD  + ", " +
-                        STATE     + ", " +
-                        REF_OCCUPATION;
+                        STATE;
             }
         }
     }

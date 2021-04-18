@@ -12,19 +12,17 @@ public class UserManagerTransactions {
 
         String sql = "insert into " + U.name +
                     "(" +
-                        U.columns.NAME           + ", " +
-                        U.columns.LOGIN          + ", " +
-                        U.columns.PASSWORD       + ", " +
-                        U.columns.STATE          + ", " +
-                        U.columns.REF_OCCUPATION +
+                        U.columns.NAME     + ", " +
+                        U.columns.LOGIN    + ", " +
+                        U.columns.PASSWORD + ", " +
+                        U.columns.STATE    +
                     ")"+
                     " values" +
                     "( " +
-                        db.quote(user.getName()) + ", " +
-                        db.quote(user.getName()) + ", " +
-                        db.quote(user.getName()) + ", " +
-                        user.getState()          + ", " +
-                        user.getOccupationId()   +
+                        db.quote(user.getName())     + ", " +
+                        db.quote(user.getLogin())    + ", " +
+                        db.quote(user.getPassword()) + ", " +
+                        user.getState()              +
                     " )";
 
         db.executeCommand(sql);

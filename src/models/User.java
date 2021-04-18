@@ -6,7 +6,6 @@ public class User extends Identity {
     private String name;
     private String login;
     private String password;
-    private int occupationId;
 
     public User() {
     }
@@ -33,14 +32,6 @@ public class User extends Identity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getOccupationId() {
-        return occupationId;
-    }
-
-    public void setOccupationId(int occupationId) {
-        this.occupationId = occupationId;
     }
 
     @Override

@@ -15,7 +15,6 @@ public class UserFetcher implements Fetcher<User> {
         user.setLogin(resultSet.getString(Schema.Users.table.columns.LOGIN));
         user.setPassword(resultSet.getString(Schema.Users.table.columns.PASSWORD));
         user.setState(resultSet.getInt(Schema.Users.table.columns.STATE));
-        user.setOccupationId(resultSet.getInt(Schema.Users.table.columns.REF_OCCUPATION));
 
         return user;
     }

@@ -21,13 +21,13 @@ public class LoginController {
     private Button loginButton;
 
     @FXML
-    private Button signupButton;
+    private Button signupLink;
 
     public LoginController() {
 
     }
 
-    public void handleSignup() throws IOException {
+    public void handleSignup() {
         SceneChangerService.changeSceneTo("signup.fxml");
     }
 

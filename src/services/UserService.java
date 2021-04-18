@@ -11,13 +11,13 @@ public class UserService {
         String login = credentials.getLogin();
         String password = credentials.getPassword();
 
-        if (password.equals(passwordConfirmation)) {
+        if (!password.equals(passwordConfirmation)) {
             throw new Exception("A confirmação de senha deve ser igual a senha informada");
         }
 
         user.setName(name);
         user.setLogin(login);
-        user.setPassword(password);
+        user.setPassword(HashService.hash(password));
 
         UserManager.getInstance().create(user);
     }

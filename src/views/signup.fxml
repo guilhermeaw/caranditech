@@ -58,7 +58,7 @@
                         <Insets top="24.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button fx:id="loginButton" defaultButton="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="293.0" style="-fx-background-color: #ff9000;" text="Criar conta">
+                  <Button fx:id="signupButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSignup" prefHeight="40.0" prefWidth="293.0" style="-fx-background-color: #ff9000;" text="Criar conta">
                      <VBox.margin>
                         <Insets top="24.0" />
                      </VBox.margin>
@@ -69,7 +69,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="signinButton" mnemonicParsing="false" onAction="#handleSignin" style="-fx-background-color: transparent;">
+                  <Button fx:id="signinLink" mnemonicParsing="false" onAction="#handleSignin" style="-fx-background-color: transparent;">
                      <graphic>
                         <HBox fx:id="signupBox" alignment="CENTER" prefHeight="49.0" prefWidth="293.0">
                            <children>
