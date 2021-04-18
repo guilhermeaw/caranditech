@@ -31,21 +31,40 @@ public class UserManagerTransactions {
     public void update(User user, Database db) throws Exception {
         Schema.Users U = Schema.Users.table;
 
-        String sql = "";
+        String sql = "update " + U.name + " set " +
+                U.columns.LOGIN + " = " + db.quote(user.getLogin()) + ", " +
+                U.columns.PASSWORD + " = " + db.quote(user.getPassword()) + ", " +
+                U.columns.NAME + " = " + db.quote(user.getName()) +
+                " where " + U.columns.ID + " = " + user.getId();
 
         db.executeCommand(sql);
     }
 
     public void delete(User user, Database db) throws Exception {
+        Schema.Users U = Schema.Users.table;
 
+        String sql = "update " + U.name + " set " +
+                U.columns.STATE + " = " + User.STATE_DELETED +
+                " where " + U.columns.ID + " = " + user.getId();
+
+        db.executeCommand(sql);
     }
 
     public User getById(int id, Database db) throws Exception {
-        return null;
+        Schema.Users U = Schema.Users.table;
+
+        String sql = U.select +
+                " where " + U.columns.ID + " = " + id;
+
+        return db.fetchOne(sql, U.fetcher);
     }
 
     public List<User> getAll(Database db) throws Exception {
-        return null;
+        Schema.Users U = Schema.Users.table;
+
+        String sql = U.select;
+
+        return db.fetchMany(sql, U.fetcher);
     }
 
     public User getByLoginAndPassword(String login, String password, Database db) throws Exception {
