@@ -1,5 +1,6 @@
 package db.managers;
 
+import db.Database;
 import db.transactions.OccupationManagerTransactions;
 import db.transactions.WingManagerTransactions;
 import models.Wing;
@@ -23,27 +24,57 @@ public class WingManager implements DefaultManager<Wing> {
     }
 
     @Override
-    public void create(Wing value) throws Exception {
+    public void create(Wing wing) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.create(wing, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void update(Wing value) throws Exception {
+    public void update(Wing wing) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.update(wing, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void delete(Wing value) throws Exception {
+    public void delete(Wing wing) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.delete(wing, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
     public Wing getById(int id) throws Exception {
-        return null;
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getById(id, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
     public List<Wing> getAll() throws Exception {
-        return null;
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getAll(db);
+        } finally {
+            db.release();
+        }
     }
 }
