@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 import services.LoginService;
 import services.SceneChangerService;
 
-import java.io.IOException;
-
 public class LoginController {
     @FXML
     private TextField loginField;
