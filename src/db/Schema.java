@@ -2,6 +2,7 @@ package db;
 
 import db.fetchers.OccupationFetcher;
 import db.fetchers.UserFetcher;
+import db.fetchers.WingFetcher;
 
 public class Schema {
     public static class Users
@@ -57,7 +58,7 @@ public class Schema {
     {
         public String name = "occupations";
 
-        public static final Occupations table = new Users( null );
+        public static final Occupations table = new Occupations( null );
         public final Columns columns;
 
         public final OccupationFetcher fetcher = new OccupationFetcher();
@@ -65,6 +66,52 @@ public class Schema {
         public final String select;
 
         private Occupations( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String NAME;
+            public String DESCRIPTION;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID          = alias + "id";
+                NAME        = alias + "name";
+                DESCRIPTION = alias + "description";
+                STATE       = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID          + ", " +
+                        NAME        + ", " +
+                        DESCRIPTION + ", " +
+                        STATE;
+            }
+        }
+    }
+
+    public static class Wings
+    {
+        public String name = "wings";
+
+        public static final Wings table = new Wings( null );
+        public final Columns columns;
+
+        public final WingFetcher fetcher = new WingFetcher();
+
+        public final String select;
+
+        private Wings( String alias )
         {
             this.name = alias != null ? name + " " + alias : name;
 
