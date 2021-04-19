@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import services.AlertService;
 import services.LoginService;
 import utils.ApplicationUtilities;
 
@@ -41,11 +42,7 @@ public class DashboardController implements Initializable {
     }
 
     public void handleLogout() {
-        try {
-            LoginService.doLogout();
-        } catch (Exception e) {
-            ApplicationUtilities.getInstance().handleException(e);
-        }
+        LoginService.doLogout();
     }
 
     private void loadDefaultPane() {
@@ -58,8 +55,7 @@ public class DashboardController implements Initializable {
 
             dashboardStackPane.getChildren().setAll(pane);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Erro ao trocar painel do dashboard: " + e.getMessage());
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 }

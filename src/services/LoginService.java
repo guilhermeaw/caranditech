@@ -4,14 +4,15 @@ import common.Credentials;
 import db.managers.UserManager;
 import models.User;
 import utils.ApplicationUtilities;
+import validators.EmptyValidator;
 
 public class LoginService {
     public static void doLogin(Credentials credentials) throws Exception {
         String login = credentials.getLogin();
         String password = credentials.getPassword();
 
-        if (login == null || password == null) {
-            // TODO
+        if (!EmptyValidator.validate(login) || !EmptyValidator.validate(password)) {
+            throw new Exception("É necessário preencher os campos de login e senha");
         }
 
         User user = UserManager.getInstance()
@@ -24,7 +25,7 @@ public class LoginService {
         }
     }
 
-    public static void doLogout() throws Exception {
+    public static void doLogout() {
         ApplicationUtilities.getInstance().setActiveUser(null);
 
         SceneChangerService.changeSceneTo("login.fxml");

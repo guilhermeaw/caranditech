@@ -2,6 +2,7 @@ package utils;
 
 import javafx.scene.control.Alert;
 import models.User;
+import services.AlertService;
 
 import java.util.List;
 
@@ -41,7 +42,6 @@ public class ApplicationUtilities {
     public void handleException(Exception e) {
         String errorMessage = e.getMessage() + "\n\n" + e.getStackTrace().toString();
 
-        Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage);
-        alert.showAndWait();
+        AlertService.showError(errorMessage);
     }
 }

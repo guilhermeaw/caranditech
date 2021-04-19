@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import services.AlertService;
 import services.LoginService;
 import services.SceneChangerService;
 import utils.ApplicationUtilities;
@@ -39,7 +40,7 @@ public class LoginController {
 
             SceneChangerService.changeSceneTo("dashboard.fxml");
         } catch (Exception e) {
-            ApplicationUtilities.getInstance().handleException(e);
+            AlertService.showWarning(e.getMessage());
         }
     }
 }
