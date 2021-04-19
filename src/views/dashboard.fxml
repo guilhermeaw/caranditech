@@ -21,7 +21,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="775.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleEditUser" styleClass="header-button">
+            <Button fx:id="btnEditUser" layoutX="775.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleEditUser" styleClass="header-button">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0">
                      <image>
@@ -30,7 +30,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="838.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLogout" styleClass="header-button">
+            <Button fx:id="btnLogout" layoutX="838.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLogout" styleClass="header-button">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0">
                      <image>

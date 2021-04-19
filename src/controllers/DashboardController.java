@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import services.AlertService;
 import services.LoginService;
 import utils.ApplicationUtilities;
 
@@ -19,6 +19,12 @@ public class DashboardController implements Initializable {
     private StackPane dashboardStackPane;
 
     @FXML
+    private Button btnEditUser;
+
+    @FXML
+    private Button btnLogout;
+
+    @FXML
     private Button employeesButton;
 
     @FXML
@@ -26,6 +32,7 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadTooltips();
         loadDefaultPane();
     }
 
@@ -43,6 +50,11 @@ public class DashboardController implements Initializable {
 
     public void handleLogout() {
         LoginService.doLogout();
+    }
+
+    private void loadTooltips() {
+        btnEditUser.setTooltip(new Tooltip("Editar usuário"));
+        btnLogout.setTooltip(new Tooltip("Efetuar logout"));
     }
 
     private void loadDefaultPane() {
