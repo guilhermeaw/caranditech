@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.WingsCellsPaneController">
    <children>
       <Label layoutX="36.0" layoutY="14.0" text="Alas" textAlignment="CENTER">
          <font>
@@ -31,9 +31,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView layoutX="34.0" layoutY="70.0" prefHeight="453.0" prefWidth="637.0">
+      <TableView fx:id="wingsTable" layoutX="34.0" layoutY="70.0" prefHeight="453.0" prefWidth="637.0">
          <columns>
-            <TableColumn prefWidth="636.0" text="Nome" />
+            <TableColumn fx:id="nameColumn" prefWidth="636.0" text="Nome" />
          </columns>
       </TableView>
    </children>

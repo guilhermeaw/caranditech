@@ -14,7 +14,6 @@ public class WingFetcher implements Fetcher<Wing> {
 
         wing.setId(resultSet.getInt(W.columns.ID));
         wing.setName(resultSet.getString(W.columns.NAME));
-        wing.setDescription(resultSet.getString(W.columns.DESCRIPTION));
         wing.setState(resultSet.getInt(W.columns.STATE));
 
         return wing;

@@ -124,14 +124,12 @@ public class Schema {
         {
             public String ID;
             public String NAME;
-            public String DESCRIPTION;
             public String STATE;
 
             public Columns( String alias )
             {
                 ID          = alias + "id";
                 NAME        = alias + "name";
-                DESCRIPTION = alias + "description";
                 STATE       = alias + "state";
             }
 
@@ -140,7 +138,6 @@ public class Schema {
             {
                 return  ID          + ", " +
                         NAME        + ", " +
-                        DESCRIPTION + ", " +
                         STATE;
             }
         }

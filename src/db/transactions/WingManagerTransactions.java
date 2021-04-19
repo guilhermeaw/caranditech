@@ -12,15 +12,13 @@ public class WingManagerTransactions {
 
         String sql = "insert into " + W.name +
                 "(" +
-                W.columns.NAME        + ", " +
-                W.columns.DESCRIPTION + ", " +
-                W.columns.STATE       +
+                W.columns.NAME  + ", " +
+                W.columns.STATE +
                 ")"+
                 " values" +
                 "( " +
-                db.quote(wing.getName())        + ", " +
-                db.quote(wing.getDescription()) + ", " +
-                wing.getState()                 +
+                db.quote(wing.getName()) + ", " +
+                wing.getState()          +
                 " )";
 
         db.executeCommand(sql);
@@ -31,7 +29,6 @@ public class WingManagerTransactions {
 
         String sql = "update " + W.name + " set " +
                 W.columns.NAME + " = " + db.quote(wing.getName()) + ", " +
-                W.columns.DESCRIPTION + " = " + db.quote(wing.getDescription()) +
                 " where " + W.columns.ID + " = " + wing.getId();
 
         db.executeCommand(sql);
