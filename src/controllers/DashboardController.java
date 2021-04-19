@@ -1,11 +1,11 @@
 package controllers;
 
+import common.Tooltip;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import services.LoginService;
@@ -38,7 +38,7 @@ public class DashboardController implements Initializable {
 
     public void handleChangePane(ActionEvent actionEvent) {
         if (actionEvent.getSource() == employeesButton) {
-            loadPane("/views/components/employeesPane.fxml");
+            loadPane("/views/components/employeesOccupationsPane.fxml");
         } else if (actionEvent.getSource() == wingsCellsButton) {
             loadPane("/views/components/wingsCellsPane.fxml");
         }
@@ -58,7 +58,7 @@ public class DashboardController implements Initializable {
     }
 
     private void loadDefaultPane() {
-        loadPane("/views/components/employeesPane.fxml");
+        loadPane("/views/components/employeesOccupationsPane.fxml");
     }
 
     private void loadPane(String fxmlSrc) {

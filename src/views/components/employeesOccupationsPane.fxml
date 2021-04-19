@@ -11,14 +11,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EmployeesOccupationsPaneController">
    <children>
-      <Label layoutX="36.0" layoutY="14.0" text="Funcionários" textAlignment="CENTER">
+      <Label layoutX="36.0" layoutY="14.0" text="Cargos" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Line endX="62.56640625" layoutX="117.0" layoutY="49.0" startX="-80.0" />
+      <Line endX="-3.46875" layoutX="117.0" layoutY="49.0" startX="-80.0" />
       <Button layoutX="572.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" stylesheets="@../dashboard.css" text="Adicionar" textFill="#f4f4f4">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -31,10 +31,10 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView layoutX="34.0" layoutY="70.0" prefHeight="453.0" prefWidth="637.0">
+      <TableView fx:id="occupationsTable" layoutX="34.0" layoutY="70.0" prefHeight="453.0" prefWidth="637.0">
          <columns>
-            <TableColumn prefWidth="178.0" text="Nome" />
-            <TableColumn prefWidth="458.0" text="Info" />
+            <TableColumn fx:id="nameColumn" prefWidth="178.0" text="Nome" />
+            <TableColumn fx:id="infoColumn" prefWidth="458.0" text="Info" />
          </columns>
       </TableView>
    </children>

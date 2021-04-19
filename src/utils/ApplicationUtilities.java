@@ -1,9 +1,10 @@
 package utils;
 
-import javafx.scene.control.Alert;
 import models.User;
 import services.AlertService;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 public class ApplicationUtilities {
@@ -40,7 +41,11 @@ public class ApplicationUtilities {
     }
 
     public void handleException(Exception e) {
-        String errorMessage = e.getMessage() + "\n\n" + e.getStackTrace().toString();
+        StringWriter sw = new StringWriter();
+        e.printStackTrace(new PrintWriter(sw));
+        String exceptionAsString = sw.toString();
+
+        String errorMessage = e.getMessage() + "\n\n" + exceptionAsString;
 
         AlertService.showError(errorMessage);
     }
