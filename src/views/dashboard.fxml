@@ -21,18 +21,18 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btnEditUser" layoutX="775.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleEditUser" styleClass="header-button">
+            <Button fx:id="btnEditUser" layoutX="793.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleEditUser" styleClass="header-button">
                <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0">
+                  <ImageView fitHeight="24.0" fitWidth="24.0">
                      <image>
                         <Image url="@../res/images/menu-user.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnLogout" layoutX="838.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLogout" styleClass="header-button">
+            <Button fx:id="btnLogout" layoutX="846.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleLogout" styleClass="header-button">
                <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0">
+                  <ImageView fitHeight="24.0" fitWidth="24.0">
                      <image>
                         <Image url="@../res/images/power.png" />
                      </image>

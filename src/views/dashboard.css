@@ -25,6 +25,8 @@
 }
 
 .header-button {
-    -fx-background-radius: 40;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
     -fx-cursor: hand;
 }
