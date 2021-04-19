@@ -1,14 +1,13 @@
 package controllers;
 
-import db.managers.UserManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.User;
 import services.AlertService;
 import services.HashService;
+import services.UserService;
 import utils.ApplicationUtilities;
 import validators.EmptyValidator;
 
@@ -37,6 +36,7 @@ public class UsersPaneController implements Initializable {
     private Button editButton;
 
     private boolean editMode = false;
+    private User source;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,6 +45,8 @@ public class UsersPaneController implements Initializable {
 
     public void refreshContent() {
         User activeUser = ApplicationUtilities.getInstance().getActiveUser();
+
+        this.source = activeUser;
 
         tfUserName.setText(activeUser.getName());
         tfUserLogin.setText(activeUser.getLogin());
@@ -65,19 +67,20 @@ public class UsersPaneController implements Initializable {
         if (!errors.isEmpty()) {
             AlertService.showWarning(ApplicationUtilities.getInstance().formatErrorMessage(errors));
         } else {
-            User activeUser = ApplicationUtilities.getInstance().getActiveUser();
+            String actualPassword = source.getPassword();
+            String newPassword = tfUserPassword.getText();
 
-            activeUser.setName(tfUserName.getText());
-            activeUser.setLogin(tfUserLogin.getText());
-            activeUser.setPassword(HashService.hash(tfUserPassword.getText()));
+            source.setName(tfUserName.getText());
+            source.setLogin(tfUserLogin.getText());
+            source.setPassword(actualPassword.equals(newPassword) ? actualPassword : HashService.hash(newPassword));
 
             try {
-                UserManager.getInstance().update(activeUser);
+                UserService.updateUser(source);
             } catch (Exception e) {
                 ApplicationUtilities.getInstance().handleException(e);
             }
 
-            ApplicationUtilities.getInstance().setActiveUser(activeUser);
+            ApplicationUtilities.getInstance().setActiveUser(source);
 
             setEditMode(false);
             refreshContent();

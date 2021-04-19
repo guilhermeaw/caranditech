@@ -48,6 +48,11 @@
                         <Insets top="40.0" />
                      </VBox.margin>
                   </TextField>
+                  <TextField fx:id="nameField" pickOnBounds="false" promptText="Nome" style="-fx-padding: 8px;">
+                     <VBox.margin>
+                        <Insets top="24.0" />
+                     </VBox.margin>
+                  </TextField>
                   <PasswordField fx:id="passwordField" promptText="Senha" style="-fx-padding: 8;">
                      <VBox.margin>
                         <Insets top="24.0" />
@@ -60,7 +65,7 @@
                   </PasswordField>
                   <Button fx:id="signupButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSignup" prefHeight="40.0" prefWidth="293.0" style="-fx-background-color: #ff9000;" text="Criar conta">
                      <VBox.margin>
-                        <Insets top="24.0" />
+                        <Insets bottom="8.0" top="24.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -68,6 +73,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <padding>
+                        <Insets bottom="8.0" top="8.0" />
+                     </padding>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#handleSignin" style="-fx-background-color: transparent;">
                      <graphic>

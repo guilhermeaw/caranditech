@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SignupController {
-
     @FXML
     private TextField loginField;
+
+    @FXML
+    private TextField nameField;
 
     @FXML
     private PasswordField passwordField;
@@ -30,6 +32,7 @@ public class SignupController {
     public void handleSignup() {
         try {
             String login = loginField.getText();
+            String name = nameField.getText();
             String password = passwordField.getText();
             String passwordConfirmation = confirmPasswordField.getText();
 
@@ -40,7 +43,7 @@ public class SignupController {
             if (!errors.isEmpty()) {
                 AlertService.showWarning(ApplicationUtilities.getInstance().formatErrorMessage(errors));
             } else {
-                UserService.createUser(new Credentials(login, password), passwordConfirmation, "Guilherme");
+                UserService.createUser(new Credentials(login, password), passwordConfirmation, name);
 
                 SceneChangerService.changeSceneTo("login.fxml");
             }
@@ -57,6 +60,10 @@ public class SignupController {
     private void validateFields(List<String> errors) {
         if (!EmptyValidator.validate(loginField.getText())) {
             errors.add("É necessário informar um login");
+        }
+
+        if (!EmptyValidator.validate(nameField.getText())) {
+            errors.add("É necessário informar um nome");
         }
 
         if (!EmptyValidator.validate(passwordField.getText())) {

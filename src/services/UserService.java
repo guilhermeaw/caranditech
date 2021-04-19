@@ -12,7 +12,7 @@ public class UserService {
         String password = credentials.getPassword();
 
         if (!password.equals(passwordConfirmation)) {
-            throw new Exception("A confirmação de senha deve ser igual a senha informada");
+            AlertService.showWarning("A confirmação de senha deve ser igual a senha informada");
         }
 
         user.setName(name);
@@ -20,5 +20,9 @@ public class UserService {
         user.setPassword(HashService.hash(password));
 
         UserManager.getInstance().create(user);
+    }
+
+    public static void updateUser(User user) throws Exception {
+        UserManager.getInstance().update(user);
     }
 }
