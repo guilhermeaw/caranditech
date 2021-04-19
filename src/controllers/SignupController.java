@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.SceneChangerService;
 import services.UserService;
+import utils.ApplicationUtilities;
 
 import java.io.IOException;
 
@@ -37,7 +38,7 @@ public class SignupController {
 
             SceneChangerService.changeSceneTo("login.fxml");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 

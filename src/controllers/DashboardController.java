@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import services.LoginService;
+import utils.ApplicationUtilities;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,7 +44,7 @@ public class DashboardController implements Initializable {
         try {
             LoginService.doLogout();
         } catch (Exception e) {
-            System.out.println("Erro ao deslogar da aplicação");
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 
@@ -57,6 +58,7 @@ public class DashboardController implements Initializable {
 
             dashboardStackPane.getChildren().setAll(pane);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Erro ao trocar painel do dashboard: " + e.getMessage());
         }
     }

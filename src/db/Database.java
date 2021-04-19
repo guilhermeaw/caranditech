@@ -1,6 +1,7 @@
 package db;
 
 import db.fetchers.Fetcher;
+import utils.ApplicationUtilities;
 
 import java.sql.*;
 import java.io.*;
@@ -33,7 +34,7 @@ public class Database {
             }
 
         } catch (Exception e) {
-            System.err.println(e);
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 
@@ -158,7 +159,7 @@ public class Database {
             instance = null;
             connection = null;
         } catch (Exception e) {
-            System.err.println(e);
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 }

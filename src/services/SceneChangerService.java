@@ -1,5 +1,6 @@
 package services;
 
+import utils.ApplicationUtilities;
 import views.Main;
 
 public class SceneChangerService {
@@ -8,7 +9,7 @@ public class SceneChangerService {
             Main main = new Main();
             main.changeScene(newScene);
         } catch (Exception e) {
-            e.printStackTrace();
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 }

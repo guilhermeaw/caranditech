@@ -11,7 +11,15 @@
 
 .add-button {
     -fx-background-color: #ff9000;
-    -fx-text-fill : #f5f5f5;
+    -fx-text-fill: #f5f5f5;
+    -fx-cursor: hand;
+    -fx-padding: 0 8;
+}
+
+.secondary-button {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #ff9000;
+    -fx-border-color: #ccc;
     -fx-cursor: hand;
     -fx-padding: 0 8;
 }

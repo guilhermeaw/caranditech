@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.LoginService;
 import services.SceneChangerService;
+import utils.ApplicationUtilities;
 
 public class LoginController {
     @FXML
@@ -38,7 +39,7 @@ public class LoginController {
 
             SceneChangerService.changeSceneTo("dashboard.fxml");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 }

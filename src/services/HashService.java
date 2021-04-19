@@ -1,5 +1,7 @@
 package services;
 
+import utils.ApplicationUtilities;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.text.Normalizer;
@@ -14,7 +16,7 @@ public class HashService {
 
         catch ( Exception e )
         {
-            e.printStackTrace();
+            ApplicationUtilities.getInstance().handleException(e);
         }
 
         return "(FAIL)";
