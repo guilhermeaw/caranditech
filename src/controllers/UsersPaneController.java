@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.User;
+import services.AlertService;
 import services.HashService;
 import utils.ApplicationUtilities;
 import validators.EmptyValidator;
@@ -62,8 +63,7 @@ public class UsersPaneController implements Initializable {
         validateFields(errors);
 
         if (!errors.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, ApplicationUtilities.getInstance().formatErrorMessage(errors));
-            alert.showAndWait();
+            AlertService.showWarning(ApplicationUtilities.getInstance().formatErrorMessage(errors));
         } else {
             User activeUser = ApplicationUtilities.getInstance().getActiveUser();
 
