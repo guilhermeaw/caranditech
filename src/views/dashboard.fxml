@@ -43,7 +43,7 @@
       </Pane>
       <VBox layoutY="64.0" prefHeight="552.0" prefWidth="199.0" style="-fx-background-color: #3a3535;">
          <children>
-            <Button fx:id="employeesButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleChangePane" prefHeight="32.0" prefWidth="180.0" styleClass="menu-button" text="Funcionários" textFill="#ff9000">
+            <Button fx:id="employeesButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleChangePane" prefHeight="32.0" prefWidth="180.0" styleClass="menu-button" text="Funcionários/Cargos" textFill="#ff9000">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
