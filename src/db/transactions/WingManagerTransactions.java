@@ -28,7 +28,7 @@ public class WingManagerTransactions {
         Schema.Wings W = Schema.Wings.table;
 
         String sql = "update " + W.name + " set " +
-                W.columns.NAME + " = " + db.quote(wing.getName()) + ", " +
+                W.columns.NAME + " = " + db.quote(wing.getName()) +
                 " where " + W.columns.ID + " = " + wing.getId();
 
         db.executeCommand(sql);

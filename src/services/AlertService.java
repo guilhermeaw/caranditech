@@ -1,7 +1,10 @@
 package services;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+
+import java.util.Optional;
 
 public class AlertService {
     public static void showWarning(String message) {
@@ -30,5 +33,21 @@ public class AlertService {
         alert.setResizable(true);
 
         alert.showAndWait();
+    }
+
+    public static boolean showConfirmation(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmação");
+
+        TextArea area = new TextArea(message);
+        area.setWrapText(true);
+        area.setEditable(false);
+
+        alert.getDialogPane().setContent(area);
+        alert.setResizable(true);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        return result.get() == ButtonType.OK;
     }
 }
