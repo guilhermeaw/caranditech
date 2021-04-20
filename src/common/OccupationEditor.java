@@ -40,8 +40,8 @@ public class OccupationEditor extends DefaultEditor<Occupation> {
     }
 
     private void initComponents() {
-        setTitle("Editor de Ala");
-        setHeaderText("Editor de Ala");
+        setTitle("Editor de Cargo");
+        setHeaderText("Editor de Cargo");
 
         setSource(source);
 
