@@ -125,6 +125,8 @@ public class EmployeesOccupationsPaneController implements Initializable {
             if (AlertService.showConfirmation("Tem certeza que deseja excluir o cargo " + selectedOccupation.getName())) {
                 try {
                     OccupationManager.getInstance().delete(selectedOccupation);
+
+                    refreshContent();
                 } catch (Exception e) {
                     ApplicationUtilities.getInstance().handleException(e);
                 }

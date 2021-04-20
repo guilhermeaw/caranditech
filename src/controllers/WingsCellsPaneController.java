@@ -107,6 +107,8 @@ public class WingsCellsPaneController implements Initializable {
             if (AlertService.showConfirmation("Tem certeza que deseja excluir a ala " + selectedWing.getName())) {
                 try {
                     WingManager.getInstance().delete(selectedWing);
+
+                    refreshContent();
                 } catch (Exception e) {
                     ApplicationUtilities.getInstance().handleException(e);
                 }
