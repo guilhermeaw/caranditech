@@ -4,7 +4,6 @@ import utils.ApplicationUtilities;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.text.Normalizer;
 
 public class HashService {
     public static String hash(String text) {
@@ -15,9 +14,5 @@ public class HashService {
         }
 
         return "(FAIL)";
-    }
-
-    public static String normalize(String text) {
-        return Normalizer.normalize( text, Normalizer.Form.NFKD ).replaceAll( "\\p{InCombiningDiacriticalMarks}+", "" );
     }
 }
