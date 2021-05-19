@@ -5,6 +5,7 @@ import common.Identity;
 public class Occupation extends Identity {
     private String name;
     private String description;
+    private double wage;
 
     public Occupation() {
     }
@@ -23,5 +24,13 @@ public class Occupation extends Identity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getWage() {
+        return wage;
+    }
+
+    public void setWage(double wage) {
+        this.wage = wage;
     }
 }
