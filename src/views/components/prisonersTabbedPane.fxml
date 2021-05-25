@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Tab fx:id="prisonersTab" text="Prisioneiros">
+        <fx:include source="prisonersPane.fxml" />
+    </Tab>
+    <Tab fx:id="prisonerTypesTab" text="Tipos de prisioneiros">
+        <fx:include source="prisonerTypesPane.fxml" />
+    </Tab>
+</TabPane>

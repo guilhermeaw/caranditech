@@ -5,8 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import services.LoginService;
 import utils.ApplicationUtilities;
@@ -25,6 +25,9 @@ public class DashboardController implements Initializable {
     private Button btnLogout;
 
     @FXML
+    private Button prisonersButton;
+
+    @FXML
     private Button employeesButton;
 
     @FXML
@@ -38,9 +41,11 @@ public class DashboardController implements Initializable {
 
     public void handleChangePane(ActionEvent actionEvent) {
         if (actionEvent.getSource() == employeesButton) {
-            loadPane("/views/components/employeesOccupationsPane.fxml");
+            loadPane("/views/components/employeesOccupationsTabbedPane.fxml");
         } else if (actionEvent.getSource() == wingsCellsButton) {
             loadPane("/views/components/wingsCellsPane.fxml");
+        } else if (actionEvent.getSource() == prisonersButton) {
+            loadPane("/views/components/prisonersTabbedPane.fxml");
         }
     }
 
@@ -58,12 +63,12 @@ public class DashboardController implements Initializable {
     }
 
     private void loadDefaultPane() {
-        loadPane("/views/components/employeesOccupationsPane.fxml");
+        loadPane("/views/components/employeesOccupationsTabbedPane.fxml");
     }
 
     private void loadPane(String fxmlSrc) {
         try {
-            Pane pane = FXMLLoader.load(getClass().getResource(fxmlSrc));
+            Parent pane = FXMLLoader.load(getClass().getResource(fxmlSrc));
 
             dashboardStackPane.getChildren().setAll(pane);
         } catch (Exception e) {

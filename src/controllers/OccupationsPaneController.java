@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class EmployeesOccupationsPaneController implements Initializable {
+public class OccupationsPaneController implements Initializable {
     @FXML
     private TableView<Occupation> occupationsTable;
 

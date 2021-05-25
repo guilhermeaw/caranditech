@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TabPane?>
+
+<?import javafx.scene.control.Tab?>
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+    <Tab fx:id="employeesTab" text="Funcionários">
+        <fx:include source="employeesPane.fxml" />
+    </Tab>
+    <Tab fx:id="occupationsTab" text="Cargos">
+        <fx:include source="occupationsPane.fxml" />
+    </Tab>
+</TabPane>
