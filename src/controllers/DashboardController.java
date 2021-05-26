@@ -43,7 +43,7 @@ public class DashboardController implements Initializable {
         if (actionEvent.getSource() == employeesButton) {
             loadPane("/views/components/employeesOccupationsTabbedPane.fxml");
         } else if (actionEvent.getSource() == wingsCellsButton) {
-            loadPane("/views/components/wingsCellsPane.fxml");
+            loadPane("/views/components/wingsCellsTabbedPane.fxml");
         } else if (actionEvent.getSource() == prisonersButton) {
             loadPane("/views/components/prisonersTabbedPane.fxml");
         }

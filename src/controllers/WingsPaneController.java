@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class WingsCellsPaneController implements Initializable {
+public class WingsPaneController implements Initializable {
     @FXML
     private TableView<Wing> wingsTable;
 
