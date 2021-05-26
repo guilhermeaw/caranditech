@@ -12,17 +12,17 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EmployeesPaneController">
+<Pane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VisitorsPaneController">
    <children>
-      <Label layoutX="36.0" layoutY="14.0" text="Funcionários" textAlignment="CENTER">
+      <Label layoutX="36.0" layoutY="14.0" text="Visitantes" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Line endX="62.56640625" layoutX="117.0" layoutY="49.0" startX="-80.0" />
+      <Line endX="28.86328125" layoutX="117.0" layoutY="49.0" startX="-80.0" />
       <HBox layoutX="336.0" layoutY="16.0" spacing="16.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleAddEmployee" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" stylesheets="@../dashboard.css" text="Adicionar" textFill="#f4f4f4">
+            <Button mnemonicParsing="false" onAction="#handleAddVisitor" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" stylesheets="@../dashboard.css" text="Adicionar" textFill="#f4f4f4">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -34,7 +34,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditEmployee" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" stylesheets="@../dashboard.css" text="Editar" textFill="#f4f4f4">
+            <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditVisitor" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" stylesheets="@../dashboard.css" text="Editar" textFill="#f4f4f4">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -46,7 +46,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDeleteEmployee" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" stylesheets="@../dashboard.css" text="Excluir" textFill="#f4f4f4">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDeleteVisitor" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" stylesheets="@../dashboard.css" text="Excluir" textFill="#f4f4f4">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -60,13 +60,11 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="employeesTable" layoutX="34.0" layoutY="70.0" prefHeight="430.0" prefWidth="637.0">
+      <TableView fx:id="visitorsTable" layoutX="34.0" layoutY="70.0" prefHeight="462.0" prefWidth="637.0">
          <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="167.0" text="Nome" />
-            <TableColumn fx:id="cpfColumn" prefWidth="99.0" text="CPF" />
-            <TableColumn fx:id="phoneColumn" prefWidth="112.0" text="Fone" />
-            <TableColumn fx:id="occupationColumn" prefWidth="148.0" text="Cargo" />
-            <TableColumn fx:id="wingColumn" prefWidth="110.0" text="Ala" />
+            <TableColumn fx:id="nameColumn" prefWidth="260.0" text="Nome" />
+            <TableColumn fx:id="cpfColumn" prefWidth="207.0" text="CPF" />
+            <TableColumn fx:id="phoneColumn" prefWidth="169.0" text="Fone" />
          </columns>
       </TableView>
    </children>

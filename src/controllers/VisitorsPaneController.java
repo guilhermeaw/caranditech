@@ -5,29 +5,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import models.Employee;
+import models.Visitor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmployeesController implements Initializable {
+public class VisitorsPaneController implements Initializable {
     @FXML
-    private TableView<Employee> employeesTable;
+    private TableView<Visitor> visitorsTable;
 
     @FXML
-    private TableColumn<Employee, String> nameColumn;
+    private TableColumn<Visitor, String> nameColumn;
 
     @FXML
-    private TableColumn<Employee, String> cpfColumn;
+    private TableColumn<Visitor, String> cpfColumn;
 
     @FXML
-    private TableColumn<Employee, String> phoneColumn;
-
-    @FXML
-    private TableColumn<Employee, String> occupationColumn;
-
-    @FXML
-    private TableColumn<Employee, String> wingColumn;
+    private TableColumn<Visitor, String> phoneColumn;
 
     @FXML
     private Button editButton;
@@ -42,7 +36,7 @@ public class EmployeesController implements Initializable {
         editButton.setDisable(true);
         deleteButton.setDisable(true);
 
-        employeesTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        visitorsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 editButton.setDisable(false);
                 deleteButton.setDisable(false);
@@ -57,9 +51,9 @@ public class EmployeesController implements Initializable {
 
     }
 
-    public void handleAddEmployee() {}
+    public void handleAddVisitor() {}
 
-    public void handleEditEmployee() {}
+    public void handleEditVisitor() {}
 
-    public void handleDeleteEmployee() {}
+    public void handleDeleteVisitor() {}
 }

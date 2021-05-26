@@ -33,6 +33,12 @@ public class DashboardController implements Initializable {
     @FXML
     private Button wingsCellsButton;
 
+    @FXML
+    private Button visitorsButton;
+
+    @FXML
+    private Button visitsButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTooltips();
@@ -46,6 +52,10 @@ public class DashboardController implements Initializable {
             loadPane("/views/components/wingsCellsTabbedPane.fxml");
         } else if (actionEvent.getSource() == prisonersButton) {
             loadPane("/views/components/prisonersTabbedPane.fxml");
+        } else if (actionEvent.getSource() == visitorsButton) {
+            loadPane("/views/components/visitorsPane.fxml");
+        } else if (actionEvent.getSource() == visitsButton) {
+            loadPane("/views/components/visitsPane.fxml");
         }
     }
 
