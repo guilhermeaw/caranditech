@@ -1,8 +1,6 @@
 package db;
 
-import db.fetchers.OccupationFetcher;
-import db.fetchers.UserFetcher;
-import db.fetchers.WingFetcher;
+import db.fetchers.*;
 
 public class Schema {
     public static class Users
@@ -138,6 +136,107 @@ public class Schema {
             {
                 return  ID          + ", " +
                         NAME        + ", " +
+                        STATE;
+            }
+        }
+    }
+
+    public static class Cells
+    {
+        public String name = "cells";
+
+        public static final Cells table = new Cells( null );
+        public final Columns columns;
+
+        public final CellFetcher fetcher = new CellFetcher();
+
+        public final String select;
+
+        private Cells( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String NAME;
+            public String REF_WING;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID          = alias + "id";
+                NAME        = alias + "name";
+                REF_WING    = alias + "ref_wing";
+                STATE       = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID          + ", " +
+                        NAME        + ", " +
+                        REF_WING    + ", " +
+                        STATE;
+            }
+        }
+    }
+
+    public static class Employees
+    {
+        public String name = "employees";
+
+        public static final Employees table = new Employees( null );
+        public final Columns columns;
+
+        public final EmployeesFetcher fetcher = new EmployeesFetcher();
+
+        public final String select;
+
+        private Employees( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String NAME;
+            public String CPF;
+            public String PHONE;
+            public String REF_OCCUPATION;
+            public String REF_WING;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID              = alias + "id";
+                NAME            = alias + "name";
+                CPF             = alias + "cpf";
+                PHONE           = alias + "phone";
+                REF_OCCUPATION  = alias + "ref_occupation";
+                REF_WING        = alias + "ref_wing";
+                STATE           = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID             + ", " +
+                        NAME           + ", " +
+                        CPF            + ", " +
+                        PHONE          + ", " +
+                        REF_OCCUPATION + ", " +
+                        REF_WING       + ", " +
                         STATE;
             }
         }
