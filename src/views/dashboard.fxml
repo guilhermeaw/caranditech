@@ -121,6 +121,21 @@
                   <Insets bottom="4.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="occurrencesButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleChangePane" prefHeight="32.0" prefWidth="180.0" styleClass="menu-button" text="Ocorrências" textFill="#ff9000">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0">
+                     <image>
+                        <Image url="@../res/images/occurrence.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="4.0" />
+               </VBox.margin>
+            </Button>
          </children>
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="24.0" />

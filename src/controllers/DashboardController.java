@@ -39,6 +39,9 @@ public class DashboardController implements Initializable {
     @FXML
     private Button visitsButton;
 
+    @FXML
+    private Button occurrencesButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTooltips();
@@ -56,6 +59,8 @@ public class DashboardController implements Initializable {
             loadPane("/views/components/visitorsPane.fxml");
         } else if (actionEvent.getSource() == visitsButton) {
             loadPane("/views/components/visitsPane.fxml");
+        } else if (actionEvent.getSource() == occurrencesButton) {
+            loadPane("/views/components/occurrencesPane.fxml");
         }
     }
 
