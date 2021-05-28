@@ -345,4 +345,108 @@ public class Schema {
             }
         }
     }
+
+    public static class Prisoners
+    {
+        public String name = "prisoners";
+
+        public static final Prisoners table = new Prisoners( null );
+        public final Columns columns;
+
+        public final PrisonerFetcher fetcher = new PrisonerFetcher();
+
+        public final String select;
+
+        private Prisoners( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String NAME;
+            public String ENTER_DATE;
+            public String EXIT_DATE;
+            public String REF_CELL;
+            public String REF_PRISONER_TYPE;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID                = alias + "id";
+                NAME              = alias + "name";
+                ENTER_DATE        = alias + "enter_date";
+                EXIT_DATE         = alias + "exit_date";
+                REF_CELL          = alias + "ref_cell";
+                REF_PRISONER_TYPE = alias + "ref_prisoner_type";
+                STATE             = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID                + ", " +
+                        NAME              + ", " +
+                        ENTER_DATE        + ", " +
+                        EXIT_DATE         + ", " +
+                        REF_CELL          + ", " +
+                        REF_PRISONER_TYPE + ", " +
+                        STATE;
+            }
+        }
+    }
+
+    public static class Visitors
+    {
+        public String name = "visitors";
+
+        public static final Visitors table = new Visitors( null );
+        public final Columns columns;
+
+        public final VisitorFetcher fetcher = new VisitorFetcher();
+
+        public final String select;
+
+        private Visitors( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String NAME;
+            public String CPF;
+            public String PHONE;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID    = alias + "id";
+                NAME  = alias + "name";
+                CPF   = alias + "cpf";
+                PHONE = alias + "phone";
+                STATE = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID    + ", " +
+                        NAME  + ", " +
+                        CPF   + ", " +
+                        PHONE + ", " +
+                        STATE;
+            }
+        }
+    }
 }
