@@ -57,6 +57,7 @@ CREATE TABLE occurrences (
 	state int2 NOT NULL,
 	ref_prisoner int4 NOT NULL,
 	ref_user int4 NOT NULL,
+	created_date timestamp NOT NULL,
 	CONSTRAINT occurrences_pkey PRIMARY KEY (id)
 );
 
@@ -71,6 +72,7 @@ CREATE TABLE prisoner_types (
 	"name" varchar(100) NOT NULL,
 	profit numeric(2) NOT NULL DEFAULT 0.00,
 	description text NULL,
+	state int2 NOT NULL,
 	CONSTRAINT prisoner_types_pkey PRIMARY KEY (id)
 );
 

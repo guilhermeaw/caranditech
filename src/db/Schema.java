@@ -194,7 +194,7 @@ public class Schema {
         public static final Employees table = new Employees( null );
         public final Columns columns;
 
-        public final EmployeesFetcher fetcher = new EmployeesFetcher();
+        public final EmployeeFetcher fetcher = new EmployeeFetcher();
 
         public final String select;
 
@@ -237,6 +237,110 @@ public class Schema {
                         PHONE          + ", " +
                         REF_OCCUPATION + ", " +
                         REF_WING       + ", " +
+                        STATE;
+            }
+        }
+    }
+
+    public static class Occurrences
+    {
+        public String name = "occurrences";
+
+        public static final Occurrences table = new Occurrences( null );
+        public final Columns columns;
+
+        public final OccurrenceFetcher fetcher = new OccurrenceFetcher();
+
+        public final String select;
+
+        private Occurrences( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String TITLE;
+            public String DESCRIPTION;
+            public String CREATED_DATE;
+            public String REF_PRISONER;
+            public String REF_USER;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID           = alias + "id";
+                TITLE        = alias + "title";
+                DESCRIPTION  = alias + "description";
+                CREATED_DATE = alias + "created_date";
+                REF_PRISONER = alias + "ref_prisoner";
+                REF_USER     = alias + "ref_user";
+                STATE        = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID           + ", " +
+                        TITLE        + ", " +
+                        DESCRIPTION  + ", " +
+                        CREATED_DATE + ", " +
+                        REF_PRISONER + ", " +
+                        REF_USER   + ", " +
+                        STATE;
+            }
+        }
+    }
+
+    public static class PrisonerTypes
+    {
+        public String name = "prisonerTypes";
+
+        public static final PrisonerTypes table = new PrisonerTypes( null );
+        public final Columns columns;
+
+        public final PrisonerTypeFetcher fetcher = new PrisonerTypeFetcher();
+
+        public final String select;
+
+        private PrisonerTypes( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String NAME;
+            public String PROFIT;
+            public String DESCRIPTION;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID          = alias + "id";
+                NAME        = alias + "name";
+                PROFIT      = alias + "profit";
+                DESCRIPTION = alias + "description";
+                STATE       = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID          + ", " +
+                        NAME        + ", " +
+                        PROFIT      + ", " +
+                        DESCRIPTION + ", " +
                         STATE;
             }
         }

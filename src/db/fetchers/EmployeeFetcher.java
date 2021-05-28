@@ -5,7 +5,7 @@ import models.Employee;
 
 import java.sql.ResultSet;
 
-public class EmployeesFetcher implements Fetcher<Employee> {
+public class EmployeeFetcher implements Fetcher<Employee> {
     @Override
     public Employee fetch(ResultSet resultSet) throws Exception {
         Schema.Employees E = Schema.Employees.table;

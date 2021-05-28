@@ -2,11 +2,14 @@ package models;
 
 import common.Identity;
 
+import java.sql.Timestamp;
+
 public class Occurrence extends Identity {
     private String title;
     private String description;
+    private Timestamp createdDate;
     private int prisonerId;
-    private int userId;
+    private int authorId;
 
     public Occurrence() {}
 
@@ -26,6 +29,14 @@ public class Occurrence extends Identity {
         this.description = description;
     }
 
+    public Timestamp getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
+    }
+
     public int getPrisonerId() {
         return prisonerId;
     }
@@ -34,11 +45,11 @@ public class Occurrence extends Identity {
         this.prisonerId = prisonerId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 }
