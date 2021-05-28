@@ -449,4 +449,53 @@ public class Schema {
             }
         }
     }
+
+    public static class Visits
+    {
+        public String name = "visits";
+
+        public static final Visits table = new Visits( null );
+        public final Columns columns;
+
+        public final VisitFetcher fetcher = new VisitFetcher();
+
+        public final String select;
+
+        private Visits( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String SCHEDULE_DATE;
+            public String REF_PRISONER;
+            public String REF_VISITOR;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID            = alias + "id";
+                SCHEDULE_DATE = alias + "schedule_date";
+                REF_PRISONER  = alias + "ref_prisoner";
+                REF_VISITOR   = alias + "ref_visitor";
+                STATE         = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID            + ", " +
+                        SCHEDULE_DATE + ", " +
+                        REF_PRISONER  + ", " +
+                        REF_VISITOR   + ", " +
+                        STATE;
+            }
+        }
+    }
 }
