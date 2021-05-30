@@ -1,6 +1,10 @@
 package controllers;
 
+import common.EditorCallback;
+import db.managers.OccupationManager;
 import db.managers.PrisonerTypeManager;
+import editors.OccupationEditor;
+import editors.PrisonerTypeEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import models.Occupation;
 import models.PrisonerType;
 import utils.ApplicationUtilities;
 
@@ -69,7 +74,20 @@ public class PrisonerTypesPaneController implements Initializable {
         }
     }
 
-    public void handleAddPrisonerType() {}
+    public void handleAddPrisonerType() {
+        new PrisonerTypeEditor(new EditorCallback<PrisonerType>(new PrisonerType()) {
+            @Override
+            public void onEvent() {
+                try {
+                    PrisonerTypeManager.getInstance().create((PrisonerType) getSource());
+
+                    refreshContent();
+                } catch ( Exception e ) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } ).open();
+    }
 
     public void handleEditPrisonerType() {}
 

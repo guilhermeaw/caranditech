@@ -11,7 +11,7 @@ public class VisitorManagerTransactions {
         Schema.Visitors V = Schema.Visitors.table;
 
         String sql = V.select +
-                " where " + V.columns.STATE + " <> " + Visitor.STATE_DELETED;;
+                " where " + V.columns.STATE + " <> " + Visitor.STATE_DELETED;
 
         return db.fetchMany(sql, V.fetcher);
     }

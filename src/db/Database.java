@@ -129,6 +129,16 @@ public class Database {
         return "\'" + date.toString()  + "\'";
     }
 
+    public String quote( Double value )
+    {
+        if( value == null )
+        {
+            return "0.00";
+        }
+
+        return "\'" + Double.toString(value)  + "\'";
+    }
+
     public String quote( String sql )
     {
         if( sql == null )

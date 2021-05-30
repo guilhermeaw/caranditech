@@ -1,18 +1,20 @@
-package common;
+package editors;
 
+import common.DefaultEditor;
+import common.EditorCallback;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import models.Wing;
+import models.Occupation;
 import validators.EmptyValidator;
 
 import java.util.List;
 
-public class WingEditor extends DefaultEditor<Wing> {
-    public WingEditor(EditorCallback<Wing> callback) {
+public class OccupationEditor extends DefaultEditor<Occupation> {
+    public OccupationEditor(EditorCallback<Occupation> callback) {
         super(callback);
 
         initComponents();
@@ -28,18 +30,20 @@ public class WingEditor extends DefaultEditor<Wing> {
     @Override
     protected void obtainInput() {
         source.setName(tfName.getText());
+        source.setDescription(tfDescription.getText());
     }
 
     @Override
-    protected void setSource(Wing source) {
+    protected void setSource(Occupation source) {
         if (source.getId() != 0) {
             tfName.setText(source.getName());
+            tfDescription.setText(source.getDescription());
         }
     }
 
     private void initComponents() {
-        setTitle("Editor de Ala");
-        setHeaderText("Editor de Ala");
+        setTitle("Editor de Cargo");
+        setHeaderText("Editor de Cargo");
 
         setSource(source);
 
@@ -52,6 +56,9 @@ public class WingEditor extends DefaultEditor<Wing> {
         grid.add(lbName, 0, 0, 1, 1);
         grid.add(tfName, 1, 0, 1, 1);
 
+        grid.add(lbDescription, 0, 1, 1, 1);
+        grid.add(tfDescription, 1, 1, 1, 1);
+
         ColumnConstraints cc = new ColumnConstraints();
         cc.setHgrow(Priority.ALWAYS);
 
@@ -63,4 +70,7 @@ public class WingEditor extends DefaultEditor<Wing> {
 
     private Label lbName = new Label("Nome: *");
     private TextField tfName = new TextField();
+
+    private Label lbDescription = new Label("Descrição:");
+    private TextField tfDescription = new TextField();
 }

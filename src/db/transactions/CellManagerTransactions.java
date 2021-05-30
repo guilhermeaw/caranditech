@@ -28,7 +28,7 @@ public class CellManagerTransactions {
         Schema.Cells C = Schema.Cells.table;
 
         String sql = C.select +
-                " where " + C.columns.STATE + " <> " + Cell.STATE_DELETED;;
+                " where " + C.columns.STATE + " <> " + Cell.STATE_DELETED;
 
         return db.fetchMany(sql, C.fetcher);
     }

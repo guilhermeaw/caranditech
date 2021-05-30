@@ -3,7 +3,6 @@ package db.transactions;
 import db.Database;
 import db.Schema;
 import models.Occupation;
-import models.User;
 
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class OccupationManagerTransactions {
         Schema.Occupations OC = Schema.Occupations.table;
 
         String sql = "update " + OC.name + " set " +
-                OC.columns.STATE + " = " + User.STATE_DELETED +
+                OC.columns.STATE + " = " + Occupation.STATE_DELETED +
                 " where " + OC.columns.ID + " = " + occupation.getId();
 
         db.executeCommand(sql);

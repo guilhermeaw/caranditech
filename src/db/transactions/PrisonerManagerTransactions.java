@@ -20,7 +20,7 @@ public class PrisonerManagerTransactions {
         Schema.Prisoners P = Schema.Prisoners.table;
 
         String sql = P.select +
-                " where " + P.columns.STATE + " <> " + Prisoner.STATE_DELETED;;
+                " where " + P.columns.STATE + " <> " + Prisoner.STATE_DELETED;
 
         return db.fetchMany(sql, P.fetcher);
     }

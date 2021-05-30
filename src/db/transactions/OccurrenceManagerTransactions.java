@@ -11,7 +11,7 @@ public class OccurrenceManagerTransactions {
         Schema.Occurrences OC = Schema.Occurrences.table;
 
         String sql = OC.select +
-                " where " + OC.columns.STATE + " <> " + Occurrence.STATE_DELETED;;
+                " where " + OC.columns.STATE + " <> " + Occurrence.STATE_DELETED;
 
         return db.fetchMany(sql, OC.fetcher);
     }

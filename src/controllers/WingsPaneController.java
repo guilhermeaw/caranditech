@@ -1,7 +1,7 @@
 package controllers;
 
 import common.EditorCallback;
-import common.WingEditor;
+import editors.WingEditor;
 import db.managers.WingManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

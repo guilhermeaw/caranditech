@@ -57,7 +57,7 @@ public class WingManagerTransactions {
         Schema.Wings W = Schema.Wings.table;
 
         String sql = W.select +
-                " where " + W.columns.STATE + " <> " + Wing.STATE_DELETED;;
+                " where " + W.columns.STATE + " <> " + Wing.STATE_DELETED;
 
         return db.fetchMany(sql, W.fetcher);
     }

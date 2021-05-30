@@ -1,7 +1,7 @@
 package controllers;
 
 import common.EditorCallback;
-import common.OccupationEditor;
+import editors.OccupationEditor;
 import common.Tooltip;
 import db.managers.OccupationManager;
 import javafx.beans.property.SimpleStringProperty;
@@ -62,17 +62,15 @@ public class OccupationsPaneController implements Initializable {
             ObservableList<Occupation> occupationObservableList = FXCollections.observableArrayList(occupations);
 
             nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
-            infoColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getDescription()));
-
             infoColumn.setCellFactory(column -> new TableCell<Occupation, String>() {
                 @Override
                 protected void updateItem(String s, boolean b) {
-                    super.updateItem(s, b);
-                    setText(s);
+                super.updateItem(s, b);
+                setText(s);
 
-                    Tooltip tooltip = new Tooltip(s);
-                    tooltip.setMultiline(true);
-                    setTooltip(tooltip);
+                Tooltip tooltip = new Tooltip(s);
+                tooltip.setMultiline(true);
+                setTooltip(tooltip);
                 }
             });
 

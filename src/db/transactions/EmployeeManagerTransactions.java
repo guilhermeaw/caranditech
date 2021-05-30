@@ -11,7 +11,7 @@ public class EmployeeManagerTransactions {
         Schema.Employees E = Schema.Employees.table;
 
         String sql = E.select +
-                " where " + E.columns.STATE + " <> " + Employee.STATE_DELETED;;
+                " where " + E.columns.STATE + " <> " + Employee.STATE_DELETED;
 
         return db.fetchMany(sql, E.fetcher);
     }

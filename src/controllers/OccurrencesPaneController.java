@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class OccurrencePaneController implements Initializable {
+public class OccurrencesPaneController implements Initializable {
     @FXML
     private TableView<Occurrence> occurrencesTable;
 
