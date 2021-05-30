@@ -1,13 +1,23 @@
 package controllers;
 
+import db.managers.EmployeeManager;
+import db.managers.OccupationManager;
+import db.managers.WingManager;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import models.Employee;
+import models.Occupation;
+import models.Wing;
+import utils.ApplicationUtilities;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmployeesPaneController implements Initializable {
@@ -54,7 +64,27 @@ public class EmployeesPaneController implements Initializable {
     }
 
     public void refreshContent() {
+        try {
+            List<Employee> employees = EmployeeManager.getInstance().getAll();
 
+            ObservableList<Employee> employeeObservableList = FXCollections.observableArrayList(employees);
+
+            nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
+            cpfColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getCpf()));
+            phoneColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getPhone()));
+            occupationColumn.setCellValueFactory(column -> {
+                Occupation occupation = getOccupationById(column.getValue().getOccupationId());
+
+                return new SimpleStringProperty(occupation != null ? occupation.getName() : "n/d");
+            });
+            wingColumn.setCellValueFactory(column -> {
+                Wing wing = getWingById(column.getValue().getWingId());
+
+                return new SimpleStringProperty(wing != null ? wing.getName() : "n/d");
+            });
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
+        }
     }
 
     public void handleAddEmployee() {}
@@ -62,4 +92,24 @@ public class EmployeesPaneController implements Initializable {
     public void handleEditEmployee() {}
 
     public void handleDeleteEmployee() {}
+
+    private Occupation getOccupationById(int id) {
+        try {
+            return OccupationManager.getInstance().getById(id);
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
+        }
+
+        return null;
+    }
+
+    private Wing getWingById(int id) {
+        try {
+            return WingManager.getInstance().getById(id);
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
+        }
+
+        return null;
+    }
 }
