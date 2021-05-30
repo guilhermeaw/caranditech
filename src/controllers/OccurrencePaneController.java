@@ -1,6 +1,7 @@
 package controllers;
 
 import db.managers.OccurrenceManager;
+import db.managers.PrisonerManager;
 import db.managers.UserManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -74,7 +75,11 @@ public class OccurrencePaneController implements Initializable {
 
                 return new SimpleStringProperty(prisoner != null ? prisoner.getName() : "n/d");
             });
-            authorColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getTitle()));
+            authorColumn.setCellValueFactory(column -> {
+                User user = getUserById(column.getValue().getAuthorId());
+
+                return new SimpleStringProperty(user != null ? user.getName() : "n/d");
+            });
             createdDateColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getCreatedDate().toString()));
             infoColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getDescription()));
 

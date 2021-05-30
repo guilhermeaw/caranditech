@@ -1,13 +1,23 @@
 package controllers;
 
+import db.managers.CellManager;
+import db.managers.PrisonerManager;
+import db.managers.PrisonerTypeManager;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import models.Cell;
 import models.Prisoner;
+import models.PrisonerType;
+import utils.ApplicationUtilities;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PrisonersPaneController implements Initializable {
@@ -54,7 +64,29 @@ public class PrisonersPaneController implements Initializable {
     }
 
     public void refreshContent() {
+        try {
+            List<Prisoner> prisoners = PrisonerManager.getInstance().getAll();
 
+            ObservableList<Prisoner> prisonerObservableList = FXCollections.observableArrayList(prisoners);
+
+            nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
+            prisonerTypeColumn.setCellValueFactory(column -> {
+                PrisonerType prisonerType = getPrisonerTypeById(column.getValue().getPrisonerTypeId());
+
+                return new SimpleStringProperty(prisonerType != null ? prisonerType.getName() : "n/d");
+            });
+            cellColumn.setCellValueFactory(column -> {
+                Cell cell = getCellById(column.getValue().getCellId());
+
+                return new SimpleStringProperty(cell != null ? cell.getName() : "n/d");
+            });
+            enterDateColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getEnterDate().toString()));
+            exitDateColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getExitDate().toString()));
+
+            prisonersTable.setItems(prisonerObservableList);
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
+        }
     }
 
     public void handleAddPrisoner() {}
@@ -62,4 +94,24 @@ public class PrisonersPaneController implements Initializable {
     public void handleEditPrisoner() {}
 
     public void handleDeletePrisoner() {}
+
+    private PrisonerType getPrisonerTypeById(int id) {
+        try {
+            return PrisonerTypeManager.getInstance().getById(id);
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
+        }
+
+        return null;
+    }
+
+    private Cell getCellById(int id) {
+        try {
+            return CellManager.getInstance().getById(id);
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
+        }
+
+        return null;
+    }
 }
