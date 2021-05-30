@@ -21,18 +21,36 @@ public class PrisonerManager implements DefaultManager<Prisoner> {
     private PrisonerManager() { transactions = new PrisonerManagerTransactions(); }
 
     @Override
-    public void create(Prisoner value) throws Exception {
-//todo
+    public void create(Prisoner prisoner) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.create(prisoner, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void update(Prisoner value) throws Exception {
-//todo
+    public void update(Prisoner prisoner) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.update(prisoner, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void delete(Prisoner value) throws Exception {
-//todo
+    public void delete(Prisoner prisoner) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.delete(prisoner, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override

@@ -2,7 +2,7 @@ package models;
 
 import common.Identity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Prisoner extends Identity {
     private String name;
