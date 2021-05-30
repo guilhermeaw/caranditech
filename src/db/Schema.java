@@ -299,7 +299,7 @@ public class Schema {
 
     public static class PrisonerTypes
     {
-        public String name = "prisonerTypes";
+        public String name = "prisoner_types";
 
         public static final PrisonerTypes table = new PrisonerTypes( null );
         public final Columns columns;

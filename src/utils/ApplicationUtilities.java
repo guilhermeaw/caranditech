@@ -48,5 +48,6 @@ public class ApplicationUtilities {
         String errorMessage = e.getMessage() + "\n\n" + exceptionAsString;
 
         AlertService.showError(errorMessage);
+        e.printStackTrace();
     }
 }
