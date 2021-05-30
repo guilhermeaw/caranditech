@@ -15,7 +15,7 @@ public class OccurrenceFetcher implements Fetcher<Occurrence> {
         occurrence.setId(resultSet.getInt(OC.columns.ID));
         occurrence.setTitle(resultSet.getString(OC.columns.TITLE));
         occurrence.setDescription(resultSet.getString(OC.columns.DESCRIPTION));
-        occurrence.setCreatedDate(resultSet.getTimestamp(OC.columns.CREATED_DATE));
+        occurrence.setCreatedDate(resultSet.getDate(OC.columns.CREATED_DATE));
         occurrence.setPrisonerId(resultSet.getInt(OC.columns.REF_PRISONER));
         occurrence.setAuthorId(resultSet.getInt(OC.columns.REF_USER));
         occurrence.setState(resultSet.getInt(OC.columns.STATE));

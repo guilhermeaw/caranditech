@@ -70,8 +70,8 @@ public class CellEditor extends DefaultEditor<Cell> {
     }
 
     private void initComponents() {
-        setTitle("Editor de Prisioneiro");
-        setHeaderText("Editor de Prisioneiro");
+        setTitle("Editor de Cela");
+        setHeaderText("Editor de Cela");
 
         cbWing.setPrefWidth(300);
 

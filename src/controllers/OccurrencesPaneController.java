@@ -1,8 +1,11 @@
 package controllers;
 
+import common.EditorCallback;
 import db.managers.OccurrenceManager;
 import db.managers.PrisonerManager;
 import db.managers.UserManager;
+import editors.OccurrenceEditor;
+import editors.PrisonerEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +17,7 @@ import javafx.scene.control.TableView;
 import models.Occurrence;
 import models.Prisoner;
 import models.User;
+import services.AlertService;
 import utils.ApplicationUtilities;
 
 import java.net.URL;
@@ -89,11 +93,59 @@ public class OccurrencesPaneController implements Initializable {
         }
     }
 
-    public void handleAddOccurrence() {}
+    public void handleAddOccurrence() {
+        new OccurrenceEditor(new EditorCallback<Occurrence>(new Occurrence()) {
+            @Override
+            public void onEvent() {
+                try {
+                    OccurrenceManager.getInstance().create((Occurrence) getSource());
 
-    public void handleEditOccurrence() {}
+                    refreshContent();
+                } catch ( Exception e ) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } ).open();
+    }
 
-    public void handleDeleteOccurrence() {}
+    public void handleEditOccurrence() {
+        Occurrence selectedOccurrence = occurrencesTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOccurrence != null) {
+            new OccurrenceEditor(new EditorCallback<Occurrence>(selectedOccurrence) {
+                @Override
+                public void onEvent() {
+                    try {
+                        OccurrenceManager.getInstance().update((Occurrence) getSource());
+
+                        refreshContent();
+                    } catch ( Exception e ) {
+                        ApplicationUtilities.getInstance().handleException(e);
+                    }
+                }
+            } ).open();
+        } else {
+            AlertService.showWarning("É necessário selecionar uma ocorrência");
+        }
+    }
+
+    public void handleDeleteOccurrence() {
+        Occurrence selectedOccurrence = occurrencesTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOccurrence != null) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir o prisioneiro " + selectedOccurrence.getTitle() + "?")) {
+                try {
+                    OccurrenceManager.getInstance().delete(selectedOccurrence);
+
+                    refreshContent();
+                } catch (Exception e) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } else {
+            AlertService.showWarning("É necessário selecionar uma ocorrência");
+        }
+    }
 
     private Prisoner getPrisonerById(int id) {
         try {

@@ -21,24 +21,47 @@ public class OccurrenceManager implements DefaultManager<Occurrence> {
     private OccurrenceManager() { transactions = new OccurrenceManagerTransactions(); }
 
     @Override
-    public void create(Occurrence value) throws Exception {
-        //todo
+    public void create(Occurrence occurrence) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.create(occurrence, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void update(Occurrence value) throws Exception {
-//todo
+    public void update(Occurrence occurrence) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.update(occurrence, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void delete(Occurrence value) throws Exception {
-//todo
+    public void delete(Occurrence occurrence) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.delete(occurrence, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
     public Occurrence getById(int id) throws Exception {
-        //todo
-        return null;
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getById(id, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override

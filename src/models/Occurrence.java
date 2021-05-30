@@ -2,12 +2,12 @@ package models;
 
 import common.Identity;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Occurrence extends Identity {
     private String title;
     private String description;
-    private Timestamp createdDate;
+    private Date createdDate;
     private int prisonerId;
     private int authorId;
 
@@ -29,11 +29,11 @@ public class Occurrence extends Identity {
         this.description = description;
     }
 
-    public Timestamp getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 

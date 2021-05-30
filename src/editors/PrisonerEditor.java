@@ -20,7 +20,7 @@ import utils.DateUtils;
 import validators.EmptyValidator;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class PrisonerEditor extends DefaultEditor<Prisoner> {
@@ -69,7 +69,7 @@ public class PrisonerEditor extends DefaultEditor<Prisoner> {
 
             tfName.setText(source.getName());
             cbPrisonerType.setValue(getPrisonerTypeById(source.getPrisonerTypeId()));
-            cbCell.setValue(getCellByid(source.getCellId()));
+            cbCell.setValue(getCellById(source.getCellId()));
             dpEnterDate.setValue(DateUtils.getLocalDateByDate(source.getEnterDate()));
             dpExitDate.setValue(exitDate != null ? DateUtils.getLocalDateByDate(exitDate) : null);
         }
@@ -85,7 +85,7 @@ public class PrisonerEditor extends DefaultEditor<Prisoner> {
         return null;
     }
 
-    private Cell getCellByid(int id) {
+    private Cell getCellById(int id) {
         try {
             return CellManager.getInstance().getById(id);
         } catch (Exception e) {
