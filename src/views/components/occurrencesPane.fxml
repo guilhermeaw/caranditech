@@ -62,10 +62,11 @@
       </HBox>
       <TableView fx:id="occurrencesTable" layoutX="34.0" layoutY="70.0" prefHeight="462.0" prefWidth="637.0">
          <columns>
-            <TableColumn fx:id="titleColumn" prefWidth="156.0" text="Título" />
-            <TableColumn fx:id="prisonerColumn" prefWidth="164.0" text="Prisioneiro" />
-            <TableColumn fx:id="authorColumn" prefWidth="127.0" text="Autor" />
-            <TableColumn fx:id="infoColumn" prefWidth="189.0" text="Info" />
+            <TableColumn fx:id="titleColumn" prefWidth="135.0" text="Título" />
+            <TableColumn fx:id="prisonerColumn" prefWidth="124.0" text="Prisioneiro" />
+            <TableColumn fx:id="authorColumn" prefWidth="145.0" text="Autor" />
+            <TableColumn fx:id="createdDateColumn" prefWidth="109.0" text="Data de criação" />
+            <TableColumn fx:id="infoColumn" prefWidth="123.0" text="Info" />
          </columns>
       </TableView>
    </children>

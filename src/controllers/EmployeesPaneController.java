@@ -82,6 +82,8 @@ public class EmployeesPaneController implements Initializable {
 
                 return new SimpleStringProperty(wing != null ? wing.getName() : "n/d");
             });
+
+            employeesTable.setItems(employeeObservableList);
         } catch (Exception e) {
             ApplicationUtilities.getInstance().handleException(e);
         }
