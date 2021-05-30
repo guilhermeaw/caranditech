@@ -1,8 +1,10 @@
 package controllers;
 
+import common.EditorCallback;
 import db.managers.CellManager;
 import db.managers.PrisonerManager;
 import db.managers.PrisonerTypeManager;
+import editors.PrisonerEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,7 +91,20 @@ public class PrisonersPaneController implements Initializable {
         }
     }
 
-    public void handleAddPrisoner() {}
+    public void handleAddPrisoner() {
+        new PrisonerEditor(new EditorCallback<Prisoner>(new Prisoner()) {
+            @Override
+            public void onEvent() {
+                try {
+                    PrisonerManager.getInstance().create((Prisoner) getSource());
+
+                    refreshContent();
+                } catch ( Exception e ) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } ).open();
+    }
 
     public void handleEditPrisoner() {}
 

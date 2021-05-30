@@ -32,4 +32,9 @@ public class PrisonerType extends Identity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

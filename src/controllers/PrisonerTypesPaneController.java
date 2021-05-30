@@ -1,9 +1,10 @@
 package controllers;
 
 import common.EditorCallback;
-import db.managers.OccupationManager;
 import db.managers.PrisonerTypeManager;
-import editors.OccupationEditor;
+import db.managers.PrisonerTypeManager;
+import db.managers.PrisonerTypeManager;
+import editors.PrisonerTypeEditor;
 import editors.PrisonerTypeEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,8 +14,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import models.Occupation;
 import models.PrisonerType;
+import models.PrisonerType;
+import models.PrisonerType;
+import services.AlertService;
 import utils.ApplicationUtilities;
 
 import java.net.URL;
@@ -89,7 +92,42 @@ public class PrisonerTypesPaneController implements Initializable {
         } ).open();
     }
 
-    public void handleEditPrisonerType() {}
+    public void handleEditPrisonerType() {
+        PrisonerType selectedPrisonerType = prisonerTypesTable.getSelectionModel().getSelectedItem();
 
-    public void handleDeletePrisonerType() {}
+        if (selectedPrisonerType != null) {
+            new PrisonerTypeEditor(new EditorCallback<PrisonerType>(selectedPrisonerType) {
+                @Override
+                public void onEvent() {
+                    try {
+                        PrisonerTypeManager.getInstance().update((PrisonerType) getSource());
+
+                        refreshContent();
+                    } catch ( Exception e ) {
+                        ApplicationUtilities.getInstance().handleException(e);
+                    }
+                }
+            } ).open();
+        } else {
+            AlertService.showWarning("É necessário selecionar um tipo de prisioneiro");
+        }
+    }
+
+    public void handleDeletePrisonerType() {
+        PrisonerType selectedPrisonerType = prisonerTypesTable.getSelectionModel().getSelectedItem();
+
+        if (selectedPrisonerType != null) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir o tipo de prisioneiro " + selectedPrisonerType.getName())) {
+                try {
+                    PrisonerTypeManager.getInstance().delete(selectedPrisonerType);
+
+                    refreshContent();
+                } catch (Exception e) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } else {
+            AlertService.showWarning("É necessário selecionar um tipo de prisioneiro");
+        }
+    }
 }

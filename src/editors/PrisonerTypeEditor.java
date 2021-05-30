@@ -55,7 +55,7 @@ public class PrisonerTypeEditor extends DefaultEditor<PrisonerType> {
 
         setSource(source);
 
-        grid.setPadding(new Insets( 500 ));
+        grid.setPadding(new Insets(500));
         grid.setStyle("-fx-padding: 30;");
         grid.setPrefWidth(350);
         grid.setVgap(15);
@@ -74,7 +74,7 @@ public class PrisonerTypeEditor extends DefaultEditor<PrisonerType> {
         cc.setHgrow(Priority.ALWAYS);
 
         grid.getColumnConstraints().addAll(new ColumnConstraints(), cc);
-        getDialogPane().setContent( grid );
+        getDialogPane().setContent(grid);
     }
 
     private GridPane grid = new GridPane();
