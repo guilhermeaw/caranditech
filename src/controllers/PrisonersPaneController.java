@@ -5,6 +5,7 @@ import db.managers.CellManager;
 import db.managers.PrisonerManager;
 import db.managers.PrisonerTypeManager;
 import editors.PrisonerEditor;
+import editors.PrisonerTypeEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.scene.control.TableView;
 import models.Cell;
 import models.Prisoner;
 import models.PrisonerType;
+import services.AlertService;
 import utils.ApplicationUtilities;
 
 import java.net.URL;
@@ -106,9 +108,44 @@ public class PrisonersPaneController implements Initializable {
         } ).open();
     }
 
-    public void handleEditPrisoner() {}
+    public void handleEditPrisoner() {
+        Prisoner selectedPrisoner = prisonersTable.getSelectionModel().getSelectedItem();
 
-    public void handleDeletePrisoner() {}
+        if (selectedPrisoner != null) {
+            new PrisonerEditor(new EditorCallback<Prisoner>(selectedPrisoner) {
+                @Override
+                public void onEvent() {
+                    try {
+                        PrisonerManager.getInstance().update((Prisoner) getSource());
+
+                        refreshContent();
+                    } catch ( Exception e ) {
+                        ApplicationUtilities.getInstance().handleException(e);
+                    }
+                }
+            } ).open();
+        } else {
+            AlertService.showWarning("É necessário selecionar um prisioneiro");
+        }
+    }
+
+    public void handleDeletePrisoner() {
+        Prisoner selectedPrisoner = prisonersTable.getSelectionModel().getSelectedItem();
+
+        if (selectedPrisoner != null) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir o prisioneiro " + selectedPrisoner.getName() + "?")) {
+                try {
+                    PrisonerManager.getInstance().delete(selectedPrisoner);
+
+                    refreshContent();
+                } catch (Exception e) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } else {
+            AlertService.showWarning("É necessário selecionar um prisioneiro");
+        }
+    }
 
     private PrisonerType getPrisonerTypeById(int id) {
         try {

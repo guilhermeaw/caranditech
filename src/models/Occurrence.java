@@ -52,4 +52,9 @@ public class Occurrence extends Identity {
     public void setAuthorId(int authorId) {
         this.authorId = authorId;
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }

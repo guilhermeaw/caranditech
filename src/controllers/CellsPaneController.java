@@ -1,7 +1,11 @@
 package controllers;
 
+import common.EditorCallback;
 import db.managers.CellManager;
+import db.managers.PrisonerManager;
 import db.managers.WingManager;
+import editors.CellEditor;
+import editors.PrisonerEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import models.Cell;
+import models.Prisoner;
 import models.Wing;
+import services.AlertService;
 import utils.ApplicationUtilities;
 
 import java.net.URL;
@@ -72,11 +78,59 @@ public class CellsPaneController implements Initializable {
         }
     }
 
-    public void handleAddCell() {}
+    public void handleAddCell() {
+        new CellEditor(new EditorCallback<Cell>(new Cell()) {
+            @Override
+            public void onEvent() {
+                try {
+                    CellManager.getInstance().create((Cell) getSource());
 
-    public void handleEditCell() {}
+                    refreshContent();
+                } catch ( Exception e ) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } ).open();
+    }
 
-    public void handleDeleteCell() {}
+    public void handleEditCell() {
+        Cell selectedCell = cellsTable.getSelectionModel().getSelectedItem();
+
+        if (selectedCell != null) {
+            new CellEditor(new EditorCallback<Cell>(selectedCell) {
+                @Override
+                public void onEvent() {
+                    try {
+                        CellManager.getInstance().update((Cell) getSource());
+
+                        refreshContent();
+                    } catch ( Exception e ) {
+                        ApplicationUtilities.getInstance().handleException(e);
+                    }
+                }
+            } ).open();
+        } else {
+            AlertService.showWarning("É necessário selecionar uma cela");
+        }
+    }
+
+    public void handleDeleteCell() {
+        Cell selectedCell = cellsTable.getSelectionModel().getSelectedItem();
+
+        if (selectedCell != null) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir a cela " + selectedCell.getName() + "?")) {
+                try {
+                    CellManager.getInstance().delete(selectedCell);
+
+                    refreshContent();
+                } catch (Exception e) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } else {
+            AlertService.showWarning("É necessário selecionar uma cela");
+        }
+    }
 
     private Wing getWingById(int id) {
         try {

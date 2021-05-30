@@ -104,7 +104,7 @@ public class WingsPaneController implements Initializable {
         Wing selectedWing = wingsTable.getSelectionModel().getSelectedItem();
 
         if (selectedWing != null) {
-            if (AlertService.showConfirmation("Tem certeza que deseja excluir a ala " + selectedWing.getName())) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir a ala " + selectedWing.getName() + "?")) {
                 try {
                     WingManager.getInstance().delete(selectedWing);
 

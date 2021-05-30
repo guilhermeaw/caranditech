@@ -55,8 +55,13 @@ public class PrisonerTypeManager implements DefaultManager<PrisonerType> {
 
     @Override
     public PrisonerType getById(int id) throws Exception {
-        //todo
-        return null;
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getById(id, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override

@@ -120,7 +120,7 @@ public class OccupationsPaneController implements Initializable {
         Occupation selectedOccupation = occupationsTable.getSelectionModel().getSelectedItem();
 
         if (selectedOccupation != null) {
-            if (AlertService.showConfirmation("Tem certeza que deseja excluir o cargo " + selectedOccupation.getName())) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir o cargo " + selectedOccupation.getName() + "?")) {
                 try {
                     OccupationManager.getInstance().delete(selectedOccupation);
 

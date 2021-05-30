@@ -52,4 +52,9 @@ public class Prisoner extends Identity {
     public void setExitDate(Date exitDate) {
         this.exitDate = exitDate;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

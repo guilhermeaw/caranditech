@@ -2,6 +2,7 @@ package db.transactions;
 
 import db.Database;
 import db.Schema;
+import models.Cell;
 import models.PrisonerType;
 
 import java.util.List;
@@ -48,6 +49,15 @@ public class PrisonerTypeManagerTransactions {
                 " where " + PT.columns.ID + " = " + prisonerType.getId();
 
         db.executeCommand(sql);
+    }
+
+    public PrisonerType getById(int id, Database db) throws Exception {
+        Schema.PrisonerTypes PT = Schema.PrisonerTypes.table;
+
+        String sql = PT.select +
+                " where " + PT.columns.ID + " = " + id;
+
+        return db.fetchOne(sql, PT.fetcher);
     }
 
     public List<PrisonerType> getAll(Database db) throws Exception {

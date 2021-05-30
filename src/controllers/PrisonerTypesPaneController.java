@@ -117,7 +117,7 @@ public class PrisonerTypesPaneController implements Initializable {
         PrisonerType selectedPrisonerType = prisonerTypesTable.getSelectionModel().getSelectedItem();
 
         if (selectedPrisonerType != null) {
-            if (AlertService.showConfirmation("Tem certeza que deseja excluir o tipo de prisioneiro " + selectedPrisonerType.getName())) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir o tipo de prisioneiro " + selectedPrisonerType.getName() + "?")) {
                 try {
                     PrisonerTypeManager.getInstance().delete(selectedPrisonerType);
 

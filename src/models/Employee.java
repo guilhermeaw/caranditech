@@ -50,4 +50,9 @@ public class Employee extends Identity {
     public void setWingId(int wingId) {
         this.wingId = wingId;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

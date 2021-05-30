@@ -33,4 +33,9 @@ public class Occupation extends Identity {
     public void setWage(double wage) {
         this.wage = wage;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

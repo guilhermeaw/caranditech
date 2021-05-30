@@ -68,9 +68,31 @@ public class PrisonerEditor extends DefaultEditor<Prisoner> {
             Date exitDate = source.getExitDate();
 
             tfName.setText(source.getName());
+            cbPrisonerType.setValue(getPrisonerTypeById(source.getPrisonerTypeId()));
+            cbCell.setValue(getCellByid(source.getCellId()));
             dpEnterDate.setValue(DateUtils.getLocalDateByDate(source.getEnterDate()));
             dpExitDate.setValue(exitDate != null ? DateUtils.getLocalDateByDate(exitDate) : null);
         }
+    }
+
+    private PrisonerType getPrisonerTypeById(int id) {
+        try {
+            return PrisonerTypeManager.getInstance().getById(id);
+        } catch (Exception e) {
+            handleException(e);
+        }
+
+        return null;
+    }
+
+    private Cell getCellByid(int id) {
+        try {
+            return CellManager.getInstance().getById(id);
+        } catch (Exception e) {
+            handleException(e);
+        }
+
+        return null;
     }
 
     private void loadComboItems() {
