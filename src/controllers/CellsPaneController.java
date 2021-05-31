@@ -2,10 +2,8 @@ package controllers;
 
 import common.EditorCallback;
 import db.managers.CellManager;
-import db.managers.PrisonerManager;
 import db.managers.WingManager;
 import editors.CellEditor;
-import editors.PrisonerEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import models.Cell;
-import models.Prisoner;
 import models.Wing;
 import services.AlertService;
 import utils.ApplicationUtilities;

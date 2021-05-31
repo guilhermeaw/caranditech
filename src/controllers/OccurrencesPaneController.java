@@ -5,7 +5,6 @@ import db.managers.OccurrenceManager;
 import db.managers.PrisonerManager;
 import db.managers.UserManager;
 import editors.OccurrenceEditor;
-import editors.PrisonerEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

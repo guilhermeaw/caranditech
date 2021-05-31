@@ -4,7 +4,6 @@ import common.EditorCallback;
 import db.managers.PrisonerManager;
 import db.managers.VisitManager;
 import db.managers.VisitorManager;
-import editors.PrisonerEditor;
 import editors.VisitEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

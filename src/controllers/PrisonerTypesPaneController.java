@@ -2,9 +2,6 @@ package controllers;
 
 import common.EditorCallback;
 import db.managers.PrisonerTypeManager;
-import db.managers.PrisonerTypeManager;
-import db.managers.PrisonerTypeManager;
-import editors.PrisonerTypeEditor;
 import editors.PrisonerTypeEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -14,8 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import models.PrisonerType;
-import models.PrisonerType;
 import models.PrisonerType;
 import services.AlertService;
 import utils.ApplicationUtilities;

@@ -1,9 +1,7 @@
 package controllers;
 
 import common.EditorCallback;
-import db.managers.PrisonerManager;
 import db.managers.VisitorManager;
-import editors.PrisonerEditor;
 import editors.VisitorEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import models.Prisoner;
 import models.Visitor;
 import services.AlertService;
 import utils.ApplicationUtilities;

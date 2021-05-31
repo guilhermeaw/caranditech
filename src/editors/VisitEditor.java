@@ -2,24 +2,19 @@ package editors;
 
 import common.DefaultEditor;
 import common.EditorCallback;
-import db.managers.CellManager;
 import db.managers.PrisonerManager;
-import db.managers.PrisonerTypeManager;
 import db.managers.VisitorManager;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import models.*;
 import utils.DateUtils;
-import validators.EmptyValidator;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 

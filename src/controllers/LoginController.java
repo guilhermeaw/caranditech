@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import services.AlertService;
 import services.LoginService;
 import services.SceneChangerService;
-import utils.ApplicationUtilities;
 
 public class LoginController {
     @FXML
