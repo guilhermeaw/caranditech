@@ -1,6 +1,10 @@
 package controllers;
 
+import common.EditorCallback;
+import db.managers.PrisonerManager;
 import db.managers.VisitorManager;
+import editors.PrisonerEditor;
+import editors.VisitorEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import models.Prisoner;
 import models.Visitor;
+import services.AlertService;
 import utils.ApplicationUtilities;
 
 import java.net.URL;
@@ -69,9 +75,57 @@ public class VisitorsPaneController implements Initializable {
         }
     }
 
-    public void handleAddVisitor() {}
+    public void handleAddVisitor() {
+        new VisitorEditor(new EditorCallback<Visitor>(new Visitor()) {
+            @Override
+            public void onEvent() {
+                try {
+                    VisitorManager.getInstance().create((Visitor) getSource());
 
-    public void handleEditVisitor() {}
+                    refreshContent();
+                } catch ( Exception e ) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } ).open();
+    }
 
-    public void handleDeleteVisitor() {}
+    public void handleEditVisitor() {
+        Visitor selectedVisitor = visitorsTable.getSelectionModel().getSelectedItem();
+
+        if (selectedVisitor != null) {
+            new VisitorEditor(new EditorCallback<Visitor>(selectedVisitor) {
+                @Override
+                public void onEvent() {
+                    try {
+                        VisitorManager.getInstance().update((Visitor) getSource());
+
+                        refreshContent();
+                    } catch ( Exception e ) {
+                        ApplicationUtilities.getInstance().handleException(e);
+                    }
+                }
+            } ).open();
+        } else {
+            AlertService.showWarning("É necessário selecionar um visitante");
+        }
+    }
+
+    public void handleDeleteVisitor() {
+        Visitor selectedVisitor = visitorsTable.getSelectionModel().getSelectedItem();
+
+        if (selectedVisitor != null) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir o visitante " + selectedVisitor.getName() + "?")) {
+                try {
+                    VisitorManager.getInstance().delete(selectedVisitor);
+
+                    refreshContent();
+                } catch (Exception e) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } else {
+            AlertService.showWarning("É necessário selecionar um visitante");
+        }
+    }
 }

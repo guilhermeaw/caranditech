@@ -21,23 +21,47 @@ public class VisitorManager implements DefaultManager<Visitor> {
     private VisitorManager() { transactions = new VisitorManagerTransactions(); }
 
     @Override
-    public void create(Visitor value) throws Exception {
+    public void create(Visitor visitor) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.create(visitor, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void update(Visitor value) throws Exception {
+    public void update(Visitor visitor) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.update(visitor, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void delete(Visitor value) throws Exception {
+    public void delete(Visitor visitor) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.delete(visitor, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
     public Visitor getById(int id) throws Exception {
-        return null;
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getById(id, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
