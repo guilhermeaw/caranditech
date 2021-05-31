@@ -10,7 +10,9 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import models.Visitor;
+import validators.CpfValidator;
 import validators.EmptyValidator;
+import validators.PhoneValidator;
 
 import java.util.List;
 
@@ -27,20 +29,20 @@ public class VisitorEditor extends DefaultEditor<Visitor> {
             errors.add("É necessário informar um nome");
         }
 
-        if (!EmptyValidator.validate(tfCpf.getText())) {
-            errors.add("É necessário informar um CPF");
+        if (!CpfValidator.validate(tfCpf.getText())) {
+            errors.add("É necessário informar um CPF válido");
         }
 
-        if (!EmptyValidator.validate(tfPhone.getText())) {
-            errors.add("É necessário informar um telefone");
+        if (!PhoneValidator.validate(tfPhone.getText())) {
+            errors.add("É necessário informar um telefone válido");
         }
     }
 
     @Override
     protected void obtainInput() {
         source.setName(tfName.getText());
-        source.setCpf(tfCpf.getText());
-        source.setPhone(tfPhone.getText());
+        source.setCpf(tfCpf.getPlainText());
+        source.setPhone(tfPhone.getPlainText());
     }
 
     @Override

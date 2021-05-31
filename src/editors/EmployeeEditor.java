@@ -16,6 +16,8 @@ import javafx.scene.layout.Priority;
 import models.Employee;
 import models.Occupation;
 import models.Wing;
+import validators.CpfValidator;
+import validators.EmptyValidator;
 
 import java.util.List;
 
@@ -28,12 +30,34 @@ public class EmployeeEditor extends DefaultEditor<Employee> {
 
     @Override
     protected void validateInput(List<String> errors) throws Exception {
+        if (!EmptyValidator.validate(tfName.getText())) {
+            errors.add("É necessário informar um nome");
+        }
 
+        if (!CpfValidator.validate(tfCpf.getPlainText())) {
+            errors.add("É necessário informar um CPF válido");
+        }
+
+        if (!EmptyValidator.validate(tfPhone.getPlainText())) {
+            errors.add("É necessário informar um telefone válido");
+        }
+
+        if (cbOccupation.getValue() == null) {
+            errors.add("É necessário informar um cargo");
+        }
+
+        if (cbWing.getValue() == null) {
+            errors.add("É necessário informar uma ala");
+        }
     }
 
     @Override
     protected void obtainInput() {
-
+        source.setName(tfName.getText());
+        source.setCpf(tfCpf.getPlainText());
+        source.setPhone(tfPhone.getPlainText());
+        source.setOccupationId(cbOccupation.getValue().getId());
+        source.setWingId(cbWing.getValue().getId());
     }
 
     @Override
