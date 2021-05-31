@@ -2,7 +2,7 @@ package models;
 
 import common.Identity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Visit extends Identity {
     private Date scheduleDate;

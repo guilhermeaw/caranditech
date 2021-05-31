@@ -21,18 +21,36 @@ public class VisitManager implements DefaultManager<Visit> {
     private VisitManager() { transactions = new VisitManagerTransactions(); }
 
     @Override
-    public void create(Visit value) throws Exception {
+    public void create(Visit visit) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.create(visit, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void update(Visit value) throws Exception {
+    public void update(Visit visit) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.update(visit, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void delete(Visit value) throws Exception {
+    public void delete(Visit visit) throws Exception {
+        Database db = Database.getInstance();
 
+        try {
+            transactions.delete(visit, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
