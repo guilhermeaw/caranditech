@@ -1,8 +1,10 @@
 package controllers;
 
+import common.EditorCallback;
 import db.managers.EmployeeManager;
 import db.managers.OccupationManager;
 import db.managers.WingManager;
+import editors.EmployeeEditor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +16,7 @@ import javafx.scene.control.TableView;
 import models.Employee;
 import models.Occupation;
 import models.Wing;
+import services.AlertService;
 import utils.ApplicationUtilities;
 
 import java.net.URL;
@@ -89,11 +92,59 @@ public class EmployeesPaneController implements Initializable {
         }
     }
 
-    public void handleAddEmployee() {}
+    public void handleAddEmployee() {
+        new EmployeeEditor(new EditorCallback<Employee>(new Employee()) {
+            @Override
+            public void onEvent() {
+                try {
+                    EmployeeManager.getInstance().create((Employee) getSource());
 
-    public void handleEditEmployee() {}
+                    refreshContent();
+                } catch ( Exception e ) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } ).open();
+    }
 
-    public void handleDeleteEmployee() {}
+    public void handleEditEmployee() {
+        Employee selectedEmployee = employeesTable.getSelectionModel().getSelectedItem();
+
+        if (selectedEmployee != null) {
+            new EmployeeEditor(new EditorCallback<Employee>(selectedEmployee) {
+                @Override
+                public void onEvent() {
+                    try {
+                        EmployeeManager.getInstance().update((Employee) getSource());
+
+                        refreshContent();
+                    } catch ( Exception e ) {
+                        ApplicationUtilities.getInstance().handleException(e);
+                    }
+                }
+            } ).open();
+        } else {
+            AlertService.showWarning("É necessário selecionar um funcionário");
+        }
+    }
+
+    public void handleDeleteEmployee() {
+        Employee selectedEmployee = employeesTable.getSelectionModel().getSelectedItem();
+
+        if (selectedEmployee != null) {
+            if (AlertService.showConfirmation("Tem certeza que deseja excluir o funcionário " + selectedEmployee.getName() + "?")) {
+                try {
+                    EmployeeManager.getInstance().delete(selectedEmployee);
+
+                    refreshContent();
+                } catch (Exception e) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } else {
+            AlertService.showWarning("É necessário selecionar um funcionário");
+        }
+    }
 
     private Occupation getOccupationById(int id) {
         try {

@@ -23,24 +23,47 @@ public class EmployeeManager implements DefaultManager<Employee> {
     }
 
     @Override
-    public void create(Employee value) throws Exception {
-        //todo
+    public void create(Employee employee) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.create(employee, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void update(Employee value) throws Exception {
-//todo
+    public void update(Employee employee) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.update(employee, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
-    public void delete(Employee value) throws Exception {
-//todo
+    public void delete(Employee employee) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            transactions.delete(employee, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override
     public Employee getById(int id) throws Exception {
-        //todo
-        return null;
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getById(id, db);
+        } finally {
+            db.release();
+        }
     }
 
     @Override

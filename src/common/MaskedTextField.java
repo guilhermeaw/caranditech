@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * This approach has been inspired on https://github.com/vas7n/VAMaskField solution.
+ * We added new masks, fixed bugs and improved performance.
+ * Now this component works much closer to JFormattedTextfield.
+ * @author gbfragoso
+ * @version 1.3
+ */
 public class MaskedTextField extends TextField
 {
     private StringProperty mask;
