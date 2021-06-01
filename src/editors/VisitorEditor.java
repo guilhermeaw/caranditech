@@ -29,11 +29,11 @@ public class VisitorEditor extends DefaultEditor<Visitor> {
             errors.add("É necessário informar um nome");
         }
 
-        if (!CpfValidator.validate(tfCpf.getText())) {
+        if (!CpfValidator.validate(tfCpf.getPlainText())) {
             errors.add("É necessário informar um CPF válido");
         }
 
-        if (!PhoneValidator.validate(tfPhone.getText())) {
+        if (!PhoneValidator.validate(tfPhone.getPlainText())) {
             errors.add("É necessário informar um telefone válido");
         }
     }

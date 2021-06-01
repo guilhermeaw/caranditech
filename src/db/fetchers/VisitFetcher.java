@@ -13,10 +13,10 @@ public class VisitFetcher implements Fetcher<Visit> {
         Visit visit = new Visit();
 
         visit.setId(resultSet.getInt(V.columns.ID));
-        visit.setId(resultSet.getInt(V.columns.SCHEDULE_DATE));
-        visit.setId(resultSet.getInt(V.columns.REF_PRISONER));
-        visit.setId(resultSet.getInt(V.columns.REF_VISITOR));
-        visit.setId(resultSet.getInt(V.columns.STATE));
+        visit.setScheduleDate(resultSet.getDate(V.columns.SCHEDULE_DATE));
+        visit.setPrisonerId(resultSet.getInt(V.columns.REF_PRISONER));
+        visit.setVisitorId(resultSet.getInt(V.columns.REF_VISITOR));
+        visit.setState(resultSet.getInt(V.columns.STATE));
 
         return visit;
     }

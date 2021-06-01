@@ -62,6 +62,7 @@ public class OccupationsPaneController implements Initializable {
             ObservableList<Occupation> occupationObservableList = FXCollections.observableArrayList(occupations);
 
             nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
+            infoColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getDescription() != null ? column.getValue().getDescription() : "n/d"));
             infoColumn.setCellFactory(column -> new TableCell<Occupation, String>() {
                 @Override
                 protected void updateItem(String s, boolean b) {
