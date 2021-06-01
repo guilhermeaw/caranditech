@@ -16,9 +16,13 @@ import javafx.scene.control.TableView;
 import models.Occurrence;
 import models.Prisoner;
 import models.User;
+import reports.OccurrenceListReport;
+import reports.OccurrenceReport;
 import services.AlertService;
 import utils.ApplicationUtilities;
+import utils.FileUtilities;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -143,6 +147,30 @@ public class OccurrencesPaneController implements Initializable {
             }
         } else {
             AlertService.showWarning("É necessário selecionar uma ocorrência");
+        }
+    }
+
+    public void handlePrint() {
+        try {
+            Occurrence selectedOccurrence = occurrencesTable.getSelectionModel().getSelectedItem();
+
+            if (selectedOccurrence != null) {
+                File file = FileUtilities.saveFile( "Imprimir Relatório", "OccurrenceReport-" + System.currentTimeMillis() +".pdf" );
+
+                if (file != null) {
+                    OccurrenceReport report = new OccurrenceReport(selectedOccurrence);
+                    report.generatePDF(file);
+                }
+            } else {
+                File file = FileUtilities.saveFile( "Imprimir Relatório", "OccurrenceListReport-" + System.currentTimeMillis() +".pdf" );
+
+                if (file != null) {
+                    OccurrenceListReport report = new OccurrenceListReport(OccurrenceManager.getInstance().getAll());
+                    report.generatePDF(file);
+                }
+            }
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 

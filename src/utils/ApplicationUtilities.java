@@ -1,5 +1,6 @@
 package utils;
 
+import javafx.stage.Window;
 import models.User;
 import services.AlertService;
 
@@ -19,6 +20,7 @@ public class ApplicationUtilities {
     }
 
     private User activeUser;
+    private Window window;
 
     private ApplicationUtilities() {}
 
@@ -28,6 +30,16 @@ public class ApplicationUtilities {
 
     public void setActiveUser(User activeUser) {
         this.activeUser = activeUser;
+    }
+
+    public Window getWindow()
+    {
+        return window;
+    }
+
+    public String getCompany()
+    {
+        return "CarandiTech - Gestão Prisional";
     }
 
     public String formatErrorMessage(List<String> errors) {

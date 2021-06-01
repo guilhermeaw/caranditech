@@ -17,10 +17,15 @@ import javafx.scene.control.TableView;
 import models.Cell;
 import models.Prisoner;
 import models.PrisonerType;
+import reports.PrisonerReport;
+import reports.PrisonersListReport;
 import services.AlertService;
 import utils.ApplicationUtilities;
+import utils.FileUtilities;
 
+import java.io.File;
 import java.net.URL;
+import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -85,7 +90,11 @@ public class PrisonersPaneController implements Initializable {
                 return new SimpleStringProperty(cell != null ? cell.getName() : "n/d");
             });
             enterDateColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getEnterDate().toString()));
-            exitDateColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getExitDate().toString()));
+            exitDateColumn.setCellValueFactory(column -> {
+                Date exitDate = column.getValue().getExitDate();
+
+                return new SimpleStringProperty(exitDate != null ? exitDate.toString() : "n/d");
+            });
 
             prisonersTable.setItems(prisonerObservableList);
         } catch (Exception e) {
@@ -144,6 +153,30 @@ public class PrisonersPaneController implements Initializable {
             }
         } else {
             AlertService.showWarning("É necessário selecionar um prisioneiro");
+        }
+    }
+
+    public void handlePrint() {
+        try {
+            Prisoner selectedPrisoner = prisonersTable.getSelectionModel().getSelectedItem();
+
+            if (selectedPrisoner != null) {
+                File file = FileUtilities.saveFile( "Imprimir Relatório", "PrisonerReport-" + System.currentTimeMillis() +".pdf" );
+
+                if (file != null) {
+                    PrisonerReport report = new PrisonerReport(selectedPrisoner);
+                    report.generatePDF(file);
+                }
+            } else {
+                File file = FileUtilities.saveFile( "Imprimir Relatório", "PrisonersListReport-" + System.currentTimeMillis() +".pdf" );
+
+                if (file != null) {
+                    PrisonersListReport report = new PrisonersListReport(PrisonerManager.getInstance().getAll());
+                    report.generatePDF(file);
+                }
+            }
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
         }
     }
 
