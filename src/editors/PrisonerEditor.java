@@ -72,6 +72,8 @@ public class PrisonerEditor extends DefaultEditor<Prisoner> {
             cbCell.setValue(getCellById(source.getCellId()));
             dpEnterDate.setValue(DateUtils.getLocalDateByDate(source.getEnterDate()));
             dpExitDate.setValue(exitDate != null ? DateUtils.getLocalDateByDate(exitDate) : null);
+        } else {
+            dpExitDate.setDisable(true);
         }
     }
 
