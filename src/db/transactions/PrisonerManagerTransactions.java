@@ -40,7 +40,7 @@ public class PrisonerManagerTransactions {
                 P.columns.ENTER_DATE + " = " + db.quote(prisoner.getEnterDate()) + ", " +
                 P.columns.EXIT_DATE + " = " + db.quote(prisoner.getExitDate()) + ", " +
                 P.columns.REF_CELL + " = " + prisoner.getCellId() + ", " +
-                P.columns.REF_PRISONER_TYPE + " = " + prisoner.getPrisonerTypeId() + ", " +
+                P.columns.REF_PRISONER_TYPE + " = " + prisoner.getPrisonerTypeId() +
                 " where " + P.columns.ID + " = " + prisoner.getId();
 
         db.executeCommand(sql);

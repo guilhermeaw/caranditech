@@ -31,7 +31,7 @@ public class CellManagerTransactions {
 
         String sql = "update " + C.name + " set " +
                 C.columns.NAME + " = " + db.quote(cell.getName()) + ", " +
-                C.columns.REF_WING + " = " + cell.getWingId() + ", " +
+                C.columns.REF_WING + " = " + cell.getWingId() +
                 " where " + C.columns.ID + " = " + cell.getId();
 
         db.executeCommand(sql);

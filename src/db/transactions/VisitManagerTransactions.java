@@ -34,7 +34,7 @@ public class VisitManagerTransactions {
         String sql = "update " + V.name + " set " +
                 V.columns.SCHEDULE_DATE + " = " + db.quote(visit.getScheduleDate()) + ", " +
                 V.columns.REF_PRISONER + " = " + visit.getPrisonerId() + ", " +
-                V.columns.REF_VISITOR + " = " + visit.getVisitorId() + ", " +
+                V.columns.REF_VISITOR + " = " + visit.getVisitorId() +
                 " where " + V.columns.ID + " = " + visit.getId();
 
         db.executeCommand(sql);

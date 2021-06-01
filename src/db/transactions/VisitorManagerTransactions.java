@@ -34,7 +34,7 @@ public class VisitorManagerTransactions {
         String sql = "update " + V.name + " set " +
                 V.columns.NAME + " = " + db.quote(visitor.getName()) + ", " +
                 V.columns.CPF + " = " + db.quote(visitor.getCpf()) + ", " +
-                V.columns.PHONE + " = " + db.quote(visitor.getPhone()) + ", " +
+                V.columns.PHONE + " = " + db.quote(visitor.getPhone()) +
                 " where " + V.columns.ID + " = " + visitor.getId();
 
         db.executeCommand(sql);

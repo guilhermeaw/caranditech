@@ -40,7 +40,7 @@ public class EmployeeManagerTransactions {
                 E.columns.CPF + " = " + db.quote(employee.getCpf()) + ", " +
                 E.columns.PHONE + " = " + db.quote(employee.getPhone()) + ", " +
                 E.columns.REF_OCCUPATION + " = " + employee.getOccupationId() + ", " +
-                E.columns.REF_WING + " = " + employee.getWingId() + ", " +
+                E.columns.REF_WING + " = " + employee.getWingId() +
                 " where " + E.columns.ID + " = " + employee.getId();
 
         db.executeCommand(sql);

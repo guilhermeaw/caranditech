@@ -41,7 +41,7 @@ public class OccurrenceManagerTransactions {
                 OC.columns.DESCRIPTION + " = " + db.quote(occurrence.getDescription()) + ", " +
                 OC.columns.CREATED_DATE + " = " + db.quote(occurrence.getCreatedDate()) + ", " +
                 OC.columns.REF_PRISONER + " = " + occurrence.getPrisonerId() + ", " +
-                OC.columns.REF_USER + " = " + occurrence.getAuthorId() + ", " +
+                OC.columns.REF_USER + " = " + occurrence.getAuthorId() +
                 " where " + OC.columns.ID + " = " + occurrence.getId();
 
         db.executeCommand(sql);
