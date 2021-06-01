@@ -167,9 +167,9 @@ public abstract class ReportToolkit
 
                     document.open();
 
-                    document.addAuthor( "Matheus Michels" );
-                    document.addCreator( "iMob - Gestão Imobiliária" );
-                    document.addTitle( "iMob Report" );
+                    document.addAuthor( "Guilherme Weissheimer" );
+                    document.addCreator( "CarandiTech - Gestão Prisional" );
+                    document.addTitle( "CarandiTech Report" );
 
                     generateDocument( document );
 
@@ -209,10 +209,7 @@ public abstract class ReportToolkit
         } );
     }
 
-
     protected abstract void generateDocument( Document document ) throws Exception;
-
-
 
     protected class Table
             extends
@@ -291,7 +288,7 @@ public abstract class ReportToolkit
         private BaseColor fontColor   = new BaseColor( 38, 50, 56 ); //263238
         private BaseColor fontColor2  = new BaseColor( 55, 71, 79 ); //263238
 
-        private boolean formatCelll = true;
+        private boolean formatCell = true;
 
         public DetailsTable( float... widths ) throws Exception
         {
@@ -361,7 +358,7 @@ public abstract class ReportToolkit
                 cell.setBackgroundColor( BaseColor.WHITE );
                 cell.setBorderWidth( 1.5f );
 
-                if( i == 0 && formatCelll )
+                if( i == 0 && formatCell )
                 {
                     cell.setBackgroundColor( background );
                     cell.setBorderColor( background );
@@ -453,14 +450,14 @@ public abstract class ReportToolkit
             this.background = background;
         }
 
-        public boolean isFormatCelll()
+        public boolean isFormatCell()
         {
-            return formatCelll;
+            return formatCell;
         }
 
-        public void setFormatCelll( boolean formatCelll )
+        public void setFormatCell( boolean formatCell )
         {
-            this.formatCelll = formatCelll;
+            this.formatCell = formatCell;
         }
     }
 }
