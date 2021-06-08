@@ -3,6 +3,7 @@ package controllers;
 import common.EditorCallback;
 import db.managers.VisitorManager;
 import editors.VisitorEditor;
+import formatters.CpfFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,7 +64,7 @@ public class VisitorsPaneController implements Initializable {
             ObservableList<Visitor> visitorObservableList = FXCollections.observableArrayList(visitors);
 
             nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
-            cpfColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getCpf()));
+            cpfColumn.setCellValueFactory(column -> new SimpleStringProperty(CpfFormatter.format(column.getValue().getCpf())));
             phoneColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getPhone()));
 
             visitorsTable.setItems(visitorObservableList);
