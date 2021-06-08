@@ -6,6 +6,7 @@ import db.managers.OccurrenceTypeManager;
 import db.managers.PrisonerManager;
 import db.managers.UserManager;
 import editors.OccurrenceEditor;
+import formatters.DateFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -97,7 +98,7 @@ public class OccurrencesPaneController implements Initializable {
 
                 return new SimpleStringProperty(user != null ? user.getName() : "n/d");
             });
-            createdDateColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getCreatedDate().toString()));
+            createdDateColumn.setCellValueFactory(column -> new SimpleStringProperty(DateFormatter.format(column.getValue().getCreatedDate())));
             infoColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getDescription()));
 
             occurrencesTable.setItems(occurrenceObservableList);

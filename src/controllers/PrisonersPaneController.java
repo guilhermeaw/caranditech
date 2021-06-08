@@ -5,7 +5,7 @@ import db.managers.CellManager;
 import db.managers.PrisonerManager;
 import db.managers.PrisonerTypeManager;
 import editors.PrisonerEditor;
-import editors.PrisonerTypeEditor;
+import formatters.DateFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,11 +89,11 @@ public class PrisonersPaneController implements Initializable {
 
                 return new SimpleStringProperty(cell != null ? cell.getName() : "n/d");
             });
-            enterDateColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getEnterDate().toString()));
+            enterDateColumn.setCellValueFactory(column -> new SimpleStringProperty(DateFormatter.format(column.getValue().getEnterDate())));
             exitDateColumn.setCellValueFactory(column -> {
                 Date exitDate = column.getValue().getExitDate();
 
-                return new SimpleStringProperty(exitDate != null ? exitDate.toString() : "n/d");
+                return new SimpleStringProperty(exitDate != null ? DateFormatter.format(exitDate) : "n/d");
             });
 
             prisonersTable.setItems(prisonerObservableList);

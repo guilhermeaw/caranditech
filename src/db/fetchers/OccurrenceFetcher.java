@@ -19,7 +19,7 @@ public class OccurrenceFetcher implements Fetcher<Occurrence> {
         occurrence.setPrisonerId(resultSet.getInt(OC.columns.REF_PRISONER));
         occurrence.setAuthorId(resultSet.getInt(OC.columns.REF_USER));
         occurrence.setState(resultSet.getInt(OC.columns.STATE));
-        occurrence.setOccurrenceTypeId(resultSet.getInt(OC.columns.REF_OCCURRENCE_TYPE_ID));
+        occurrence.setOccurrenceTypeId(resultSet.getInt(OC.columns.REF_OCCURRENCE_TYPE));
 
         return occurrence;
     }

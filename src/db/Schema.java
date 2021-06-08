@@ -271,7 +271,7 @@ public class Schema {
             public String REF_PRISONER;
             public String REF_USER;
             public String STATE;
-            public String REF_OCCURRENCE_TYPE_ID;
+            public String REF_OCCURRENCE_TYPE;
 
             public Columns( String alias )
             {
@@ -282,7 +282,7 @@ public class Schema {
                 REF_PRISONER = alias + "ref_prisoner";
                 REF_USER     = alias + "ref_user";
                 STATE        = alias + "state";
-                REF_OCCURRENCE_TYPE_ID        = alias + "ref_occurrence_type_id";
+                REF_OCCURRENCE_TYPE        = alias + "ref_occurrence_type";
             }
 
             @Override
@@ -295,7 +295,7 @@ public class Schema {
                         REF_PRISONER + ", " +
                         REF_USER   + ", " +
                         STATE   + ", " +
-                        REF_OCCURRENCE_TYPE_ID;
+                        REF_OCCURRENCE_TYPE;
             }
         }
     }

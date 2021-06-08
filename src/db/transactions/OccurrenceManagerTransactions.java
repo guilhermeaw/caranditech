@@ -19,7 +19,7 @@ public class OccurrenceManagerTransactions {
                 OC.columns.REF_PRISONER          + ", " +
                 OC.columns.REF_USER + ", " +
                 OC.columns.STATE + ", " +
-                OC.columns.REF_OCCURRENCE_TYPE_ID             +
+                OC.columns.REF_OCCURRENCE_TYPE             +
                 ")"+
                 " values" +
                 "( " +
@@ -44,7 +44,7 @@ public class OccurrenceManagerTransactions {
                 OC.columns.CREATED_DATE + " = " + db.quote(occurrence.getCreatedDate()) + ", " +
                 OC.columns.REF_PRISONER + " = " + occurrence.getPrisonerId() + ", " +
                 OC.columns.REF_USER + " = " + occurrence.getAuthorId() + ", " +
-                OC.columns.REF_OCCURRENCE_TYPE_ID + " = " + occurrence.getOccurrenceTypeId() +
+                OC.columns.REF_OCCURRENCE_TYPE + " = " + occurrence.getOccurrenceTypeId() +
                 " where " + OC.columns.ID + " = " + occurrence.getId();
 
         db.executeCommand(sql);

@@ -5,6 +5,7 @@ import db.managers.PrisonerManager;
 import db.managers.VisitManager;
 import db.managers.VisitorManager;
 import editors.VisitEditor;
+import formatters.DateFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,7 +67,7 @@ public class VisitsPaneController implements Initializable {
 
             ObservableList<Visit> visitObservableList = FXCollections.observableArrayList(visits);
 
-            scheduleDateColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getScheduleDate().toString()));
+            scheduleDateColumn.setCellValueFactory(column -> new SimpleStringProperty(DateFormatter.format(column.getValue().getScheduleDate())));
             prisonerColumn.setCellValueFactory(column -> {
                 Prisoner prisoner = getPrisonerById(column.getValue().getPrisonerId());
 
