@@ -18,7 +18,8 @@ public class OccurrenceManagerTransactions {
                 OC.columns.CREATED_DATE         + ", " +
                 OC.columns.REF_PRISONER          + ", " +
                 OC.columns.REF_USER + ", " +
-                OC.columns.STATE             +
+                OC.columns.STATE + ", " +
+                OC.columns.REF_OCCURRENCE_TYPE_ID             +
                 ")"+
                 " values" +
                 "( " +
@@ -27,7 +28,8 @@ public class OccurrenceManagerTransactions {
                 db.quote(occurrence.getCreatedDate())  + ", " +
                 occurrence.getPrisonerId()              + ", " +
                 occurrence.getAuthorId()      + ", " +
-                occurrence.getState()               +
+                occurrence.getState()      + ", " +
+                occurrence.getOccurrenceTypeId()               +
                 " )";
 
         db.executeCommand(sql);
@@ -41,7 +43,8 @@ public class OccurrenceManagerTransactions {
                 OC.columns.DESCRIPTION + " = " + db.quote(occurrence.getDescription()) + ", " +
                 OC.columns.CREATED_DATE + " = " + db.quote(occurrence.getCreatedDate()) + ", " +
                 OC.columns.REF_PRISONER + " = " + occurrence.getPrisonerId() + ", " +
-                OC.columns.REF_USER + " = " + occurrence.getAuthorId() +
+                OC.columns.REF_USER + " = " + occurrence.getAuthorId() + ", " +
+                OC.columns.REF_OCCURRENCE_TYPE_ID + " = " + occurrence.getOccurrenceTypeId() +
                 " where " + OC.columns.ID + " = " + occurrence.getId();
 
         db.executeCommand(sql);

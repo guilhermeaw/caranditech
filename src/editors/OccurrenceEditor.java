@@ -3,10 +3,7 @@ package editors;
 import common.DefaultEditor;
 import common.EditorCallback;
 import common.MaskedTextField;
-import db.managers.CellManager;
-import db.managers.PrisonerManager;
-import db.managers.PrisonerTypeManager;
-import db.managers.UserManager;
+import db.managers.*;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
@@ -38,6 +35,10 @@ public class OccurrenceEditor extends DefaultEditor<Occurrence> {
             errors.add("É necessário informar um título");
         }
 
+        if (cbOccurrenceType.getValue() == null) {
+            errors.add("É necessário informar um tipo de ocorrência");
+        }
+
         if (cbPrisoner.getValue() == null) {
             errors.add("É necessário informar um prisioneiro");
         }
@@ -54,6 +55,7 @@ public class OccurrenceEditor extends DefaultEditor<Occurrence> {
     @Override
     protected void obtainInput() {
         source.setTitle(tfTitle.getText());
+        source.setOccurrenceTypeId(cbOccurrenceType.getValue().getId());
         source.setPrisonerId(cbPrisoner.getValue().getId());
         source.setAuthorId(cbAuthor.getValue().getId());
         source.setCreatedDate(DateUtils.getDateByLocalDate(dpCreatedDate.getValue()));
@@ -64,6 +66,7 @@ public class OccurrenceEditor extends DefaultEditor<Occurrence> {
     protected void setSource(Occurrence source) {
         if (source.getId() != 0) {
             tfTitle.setText(source.getTitle());
+            cbOccurrenceType.setValue(getOccurrenceTypeById(source.getOccurrenceTypeId()));
             cbPrisoner.setValue(getPrisonerById(source.getPrisonerId()));
             cbAuthor.setValue(getUserById(source.getAuthorId()));
             dpCreatedDate.setValue(DateUtils.getLocalDateByDate(source.getCreatedDate()));
@@ -94,13 +97,25 @@ public class OccurrenceEditor extends DefaultEditor<Occurrence> {
         return null;
     }
 
+    private OccurrenceType getOccurrenceTypeById(int id) {
+        try {
+            return OccurrenceTypeManager.getInstance().getById(id);
+        } catch (Exception e) {
+            handleException(e);
+        }
+
+        return null;
+    }
+
     private void loadComboItems() {
         try {
             List<Prisoner> prisoners = PrisonerManager.getInstance().getAll();
             List<User> users = UserManager.getInstance().getAll();
+            List<OccurrenceType> occurrenceTypes = OccurrenceTypeManager.getInstance().getAll();
 
             cbPrisoner.setItems(FXCollections.observableArrayList(prisoners));
             cbAuthor.setItems(FXCollections.observableArrayList(users));
+            cbOccurrenceType.setItems(FXCollections.observableArrayList(occurrenceTypes));
         } catch (Exception e) {
             handleException(e);
         }
@@ -127,17 +142,20 @@ public class OccurrenceEditor extends DefaultEditor<Occurrence> {
         grid.add(lbTitle, 0, 0, 1, 1);
         grid.add(tfTitle, 1, 0, 1, 1);
 
-        grid.add(lbPrisoner, 0, 1, 1, 1);
-        grid.add(cbPrisoner, 1, 1, 1, 1);
+        grid.add(lbOccurrenceType, 0, 1, 1, 1);
+        grid.add(cbOccurrenceType, 1, 1, 1, 1);
 
-        grid.add(lbAuthor, 0, 2, 1, 1);
-        grid.add(cbAuthor, 1, 2, 1, 1);
+        grid.add(lbPrisoner, 0, 2, 1, 1);
+        grid.add(cbPrisoner, 1, 2, 1, 1);
 
-        grid.add(lbCreatedDate, 0, 3, 1, 1);
-        grid.add(dpCreatedDate, 1, 3, 1, 1);
+        grid.add(lbAuthor, 0, 3, 1, 1);
+        grid.add(cbAuthor, 1, 3, 1, 1);
 
-        grid.add(lbDescription, 0, 4, 1, 1);
-        grid.add(tfDescription, 1, 4, 1, 1);
+        grid.add(lbCreatedDate, 0, 4, 1, 1);
+        grid.add(dpCreatedDate, 1, 4, 1, 1);
+
+        grid.add(lbDescription, 0, 5, 1, 1);
+        grid.add(tfDescription, 1, 5, 1, 1);
 
         ColumnConstraints cc = new ColumnConstraints();
         cc.setHgrow(Priority.ALWAYS);
@@ -150,6 +168,9 @@ public class OccurrenceEditor extends DefaultEditor<Occurrence> {
 
     private Label lbTitle = new Label("Título: *");
     private TextField tfTitle = new TextField();
+
+    private Label lbOccurrenceType = new Label("Tipo de Ocorrência: *");
+    private ComboBox<OccurrenceType> cbOccurrenceType = new ComboBox();
 
     private Label lbPrisoner = new Label("Prisioneiro: *");
     private ComboBox<Prisoner> cbPrisoner = new ComboBox();

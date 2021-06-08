@@ -10,6 +10,7 @@ public class Occurrence extends Identity {
     private Date createdDate;
     private int prisonerId;
     private int authorId;
+    private int occurrenceTypeId;
 
     public Occurrence() {}
 
@@ -51,6 +52,14 @@ public class Occurrence extends Identity {
 
     public void setAuthorId(int authorId) {
         this.authorId = authorId;
+    }
+
+    public int getOccurrenceTypeId() {
+        return occurrenceTypeId;
+    }
+
+    public void setOccurrenceTypeId(int occurrenceTypeId) {
+        this.occurrenceTypeId = occurrenceTypeId;
     }
 
     @Override

@@ -74,11 +74,12 @@
       </HBox>
       <TableView fx:id="occurrencesTable" layoutX="34.0" layoutY="70.0" prefHeight="430.0" prefWidth="637.0">
          <columns>
-            <TableColumn fx:id="titleColumn" prefWidth="135.0" text="Título" />
-            <TableColumn fx:id="prisonerColumn" prefWidth="124.0" text="Prisioneiro" />
-            <TableColumn fx:id="authorColumn" prefWidth="145.0" text="Autor" />
-            <TableColumn fx:id="createdDateColumn" prefWidth="109.0" text="Data de criação" />
-            <TableColumn fx:id="infoColumn" prefWidth="123.0" text="Info" />
+            <TableColumn fx:id="titleColumn" prefWidth="104.0" text="Título" />
+            <TableColumn fx:id="occurrenceTypeColumn" prefWidth="128.0" text="Tipo de Ocorrência" />
+            <TableColumn fx:id="prisonerColumn" prefWidth="106.0" text="Prisioneiro" />
+            <TableColumn fx:id="authorColumn" prefWidth="97.0" text="Autor" />
+            <TableColumn fx:id="createdDateColumn" prefWidth="102.0" text="Data de criação" />
+            <TableColumn fx:id="infoColumn" prefWidth="99.0" text="Info" />
          </columns>
       </TableView>
    </children>

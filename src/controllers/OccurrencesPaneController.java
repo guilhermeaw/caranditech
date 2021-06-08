@@ -2,6 +2,7 @@ package controllers;
 
 import common.EditorCallback;
 import db.managers.OccurrenceManager;
+import db.managers.OccurrenceTypeManager;
 import db.managers.PrisonerManager;
 import db.managers.UserManager;
 import editors.OccurrenceEditor;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import models.Occurrence;
+import models.OccurrenceType;
 import models.Prisoner;
 import models.User;
 import reports.OccurrenceListReport;
@@ -33,6 +35,9 @@ public class OccurrencesPaneController implements Initializable {
 
     @FXML
     private TableColumn<Occurrence, String> titleColumn;
+
+    @FXML
+    private TableColumn<Occurrence, String> occurrenceTypeColumn;
 
     @FXML
     private TableColumn<Occurrence, String> prisonerColumn;
@@ -77,6 +82,11 @@ public class OccurrencesPaneController implements Initializable {
             ObservableList<Occurrence> occurrenceObservableList = FXCollections.observableArrayList(occurrences);
 
             titleColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getTitle()));
+            occurrenceTypeColumn.setCellValueFactory(column -> {
+                OccurrenceType occurrenceType = getOccurrenceTypeById(column.getValue().getOccurrenceTypeId());
+
+                return new SimpleStringProperty(occurrenceType != null ? occurrenceType.getName() : "n/d");
+            });
             prisonerColumn.setCellValueFactory(column -> {
                 Prisoner prisoner = getPrisonerById(column.getValue().getPrisonerId());
 
@@ -187,6 +197,16 @@ public class OccurrencesPaneController implements Initializable {
     private User getUserById(int id) {
         try {
             return UserManager.getInstance().getById(id);
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
+        }
+
+        return null;
+    }
+
+    private OccurrenceType getOccurrenceTypeById(int id) {
+        try {
+            return OccurrenceTypeManager.getInstance().getById(id);
         } catch (Exception e) {
             ApplicationUtilities.getInstance().handleException(e);
         }
