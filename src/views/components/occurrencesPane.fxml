@@ -72,7 +72,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="occurrencesTable" layoutX="34.0" layoutY="70.0" prefHeight="462.0" prefWidth="637.0">
+      <TableView fx:id="occurrencesTable" layoutX="34.0" layoutY="70.0" prefHeight="430.0" prefWidth="637.0">
          <columns>
             <TableColumn fx:id="titleColumn" prefWidth="135.0" text="Título" />
             <TableColumn fx:id="prisonerColumn" prefWidth="124.0" text="Prisioneiro" />

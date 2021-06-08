@@ -498,4 +498,50 @@ public class Schema {
             }
         }
     }
+
+    public static class OccurrenceTypes
+    {
+        public String name = "occurrence_types";
+
+        public static final OccurrenceTypes table = new OccurrenceTypes( null );
+        public final Columns columns;
+
+        public final OccurrenceTypeFetcher fetcher = new OccurrenceTypeFetcher();
+
+        public final String select;
+
+        private OccurrenceTypes( String alias )
+        {
+            this.name = alias != null ? name + " " + alias : name;
+
+            columns = new Columns( alias != null ? alias + "." : "" );
+
+            select = "select " + columns + " from " + this.name;
+        }
+
+        public class Columns
+        {
+            public String ID;
+            public String NAME;
+            public String DESCRIPTION;
+            public String STATE;
+
+            public Columns( String alias )
+            {
+                ID            = alias + "id";
+                NAME = alias + "name";
+                DESCRIPTION  = alias + "description";
+                STATE         = alias + "state";
+            }
+
+            @Override
+            public String toString()
+            {
+                return  ID            + ", " +
+                        NAME + ", " +
+                        DESCRIPTION   + ", " +
+                        STATE;
+            }
+        }
+    }
 }

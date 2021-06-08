@@ -60,7 +60,7 @@ public class DashboardController implements Initializable {
         } else if (actionEvent.getSource() == visitsButton) {
             loadPane("/views/components/visitsPane.fxml");
         } else if (actionEvent.getSource() == occurrencesButton) {
-            loadPane("/views/components/occurrencesPane.fxml");
+            loadPane("/views/components/occurrencesTypesTabbedPane.fxml");
         }
     }
 
