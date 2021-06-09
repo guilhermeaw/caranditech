@@ -4,6 +4,7 @@ import common.EditorCallback;
 import db.managers.VisitorManager;
 import editors.VisitorEditor;
 import formatters.CpfFormatter;
+import formatters.PhoneFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,7 +66,7 @@ public class VisitorsPaneController implements Initializable {
 
             nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
             cpfColumn.setCellValueFactory(column -> new SimpleStringProperty(CpfFormatter.format(column.getValue().getCpf())));
-            phoneColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getPhone()));
+            phoneColumn.setCellValueFactory(column -> new SimpleStringProperty(PhoneFormatter.format(column.getValue().getPhone())));
 
             visitorsTable.setItems(visitorObservableList);
         } catch (Exception e) {

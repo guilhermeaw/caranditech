@@ -6,6 +6,7 @@ import db.managers.OccupationManager;
 import db.managers.WingManager;
 import editors.EmployeeEditor;
 import formatters.CpfFormatter;
+import formatters.PhoneFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,7 +76,7 @@ public class EmployeesPaneController implements Initializable {
 
             nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
             cpfColumn.setCellValueFactory(column -> new SimpleStringProperty(CpfFormatter.format(column.getValue().getCpf())));
-            phoneColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getPhone()));
+            phoneColumn.setCellValueFactory(column -> new SimpleStringProperty(PhoneFormatter.format(column.getValue().getPhone())));
             occupationColumn.setCellValueFactory(column -> {
                 Occupation occupation = getOccupationById(column.getValue().getOccupationId());
 
