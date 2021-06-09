@@ -3,6 +3,7 @@ package controllers;
 import common.EditorCallback;
 import db.managers.PrisonerTypeManager;
 import editors.PrisonerTypeEditor;
+import formatters.CurrencyFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,7 +64,7 @@ public class PrisonerTypesPaneController implements Initializable {
             ObservableList<PrisonerType> prisonerTypeObservableList = FXCollections.observableArrayList(prisonerTypes);
 
             nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
-            profitColumn.setCellValueFactory(column -> new SimpleStringProperty(Double.toString(column.getValue().getProfit())));
+            profitColumn.setCellValueFactory(column -> new SimpleStringProperty(CurrencyFormatter.format(column.getValue().getProfit())));
             infoColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getDescription()));
 
             prisonerTypesTable.setItems(prisonerTypeObservableList);
