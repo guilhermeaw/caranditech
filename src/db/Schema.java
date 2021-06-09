@@ -78,6 +78,7 @@ public class Schema {
             public String NAME;
             public String DESCRIPTION;
             public String STATE;
+            public String WAGE;
 
             public Columns( String alias )
             {
@@ -85,6 +86,7 @@ public class Schema {
                 NAME        = alias + "name";
                 DESCRIPTION = alias + "description";
                 STATE       = alias + "state";
+                WAGE       = alias + "wage";
             }
 
             @Override
@@ -93,7 +95,8 @@ public class Schema {
                 return  ID          + ", " +
                         NAME        + ", " +
                         DESCRIPTION + ", " +
-                        STATE;
+                        STATE + ", " +
+                        WAGE;
             }
         }
     }

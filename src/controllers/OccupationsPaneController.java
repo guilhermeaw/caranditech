@@ -4,6 +4,7 @@ import common.EditorCallback;
 import editors.OccupationEditor;
 import common.Tooltip;
 import db.managers.OccupationManager;
+import formatters.CurrencyFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,9 @@ public class OccupationsPaneController implements Initializable {
 
     @FXML
     private TableColumn<Occupation, String> nameColumn;
+
+    @FXML
+    private TableColumn<Occupation, String> wageColumn;
 
     @FXML
     private TableColumn<Occupation, String> infoColumn;
@@ -62,6 +66,7 @@ public class OccupationsPaneController implements Initializable {
             ObservableList<Occupation> occupationObservableList = FXCollections.observableArrayList(occupations);
 
             nameColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getName()));
+            wageColumn.setCellValueFactory(column -> new SimpleStringProperty(CurrencyFormatter.format(column.getValue().getWage())));
             infoColumn.setCellValueFactory(column -> new SimpleStringProperty(column.getValue().getDescription() != null ? column.getValue().getDescription() : "n/d"));
             infoColumn.setCellFactory(column -> new TableCell<Occupation, String>() {
                 @Override

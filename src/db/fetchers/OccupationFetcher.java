@@ -16,6 +16,7 @@ public class OccupationFetcher implements Fetcher<Occupation> {
         occupation.setName(resultSet.getString(OC.columns.NAME));
         occupation.setDescription(resultSet.getString(OC.columns.DESCRIPTION));
         occupation.setState(resultSet.getInt(OC.columns.STATE));
+        occupation.setWage(resultSet.getDouble(OC.columns.WAGE));
 
         return occupation;
     }

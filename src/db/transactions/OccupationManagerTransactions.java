@@ -14,13 +14,15 @@ public class OccupationManagerTransactions {
                 "(" +
                 OC.columns.NAME        + ", " +
                 OC.columns.DESCRIPTION + ", " +
-                OC.columns.STATE       +
+                OC.columns.STATE + ", " +
+                OC.columns.WAGE       +
                 ")"+
                 " values" +
                 "( " +
                 db.quote(occupation.getName())        + ", " +
                 db.quote(occupation.getDescription()) + ", " +
-                occupation.getState()                 +
+                occupation.getState() + ", " +
+                occupation.getWage()                 +
                 " )";
 
         db.executeCommand(sql);
@@ -31,7 +33,8 @@ public class OccupationManagerTransactions {
 
         String sql = "update " + OC.name + " set " +
                 OC.columns.NAME + " = " + db.quote(occupation.getName()) + ", " +
-                OC.columns.DESCRIPTION + " = " + db.quote(occupation.getDescription()) +
+                OC.columns.DESCRIPTION + " = " + db.quote(occupation.getDescription()) + ", " +
+                OC.columns.WAGE + " = " + occupation.getWage() +
                 " where " + OC.columns.ID + " = " + occupation.getId();
 
         db.executeCommand(sql);

@@ -63,7 +63,8 @@
       <TableView fx:id="occupationsTable" layoutX="34.0" layoutY="70.0" prefHeight="430.0" prefWidth="637.0">
          <columns>
             <TableColumn fx:id="nameColumn" prefWidth="178.0" text="Nome" />
-            <TableColumn fx:id="infoColumn" prefWidth="458.0" text="Info" />
+            <TableColumn fx:id="wageColumn" prefWidth="105.0" text="Salário" />
+            <TableColumn fx:id="infoColumn" prefWidth="353.0" text="Info" />
          </columns>
       </TableView>
    </children>
