@@ -178,7 +178,7 @@ public class OccurrencesPaneController implements Initializable {
                 File file = FileUtilities.saveFile( "Imprimir Relatório", "OccurrenceListReport-" + System.currentTimeMillis() +".pdf" );
 
                 if (file != null) {
-                    OccurrenceListReport report = new OccurrenceListReport(OccurrenceManager.getInstance().getAll());
+                    OccurrenceListReport report = new OccurrenceListReport(OccurrenceManager.getInstance().getByFilter(filter));
                     report.generatePDF(file);
                 }
             }
