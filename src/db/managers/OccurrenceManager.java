@@ -2,6 +2,7 @@ package db.managers;
 
 import db.Database;
 import db.transactions.OccurrenceManagerTransactions;
+import filters.data.OccurrenceFilter;
 import models.Occurrence;
 
 import java.util.List;
@@ -70,6 +71,16 @@ public class OccurrenceManager implements DefaultManager<Occurrence> {
 
         try {
             return transactions.getAll(db);
+        } finally {
+            db.release();
+        }
+    }
+
+    public List<Occurrence> getByFilter(OccurrenceFilter filter) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getByFilter(filter, db);
         } finally {
             db.release();
         }

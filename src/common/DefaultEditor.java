@@ -1,6 +1,7 @@
 package common;
 
 import common.EditorCallback;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ButtonBar;
@@ -49,6 +50,16 @@ public abstract class DefaultEditor<T> extends Dialog<T> {
 
     protected void onCancel() {}
 
+    protected void onClear() {}
+
+    protected void activeClearButton() {
+        ObservableList<ButtonType> buttonTypes = getDialogPane().getButtonTypes();
+
+        if (!buttonTypes.contains(clearButton)) {
+            getDialogPane().getButtonTypes().add(0, clearButton);
+        }
+    }
+
     private void initComponents() {
         setTitle( "Editor" );
         setHeaderText( "Editor de Items" );
@@ -63,8 +74,11 @@ public abstract class DefaultEditor<T> extends Dialog<T> {
                     if ( ! onSave() ) {
                         t.consume();
                     }
-                } else {
+                } else if (selectedBtn == cancelBtn) {
                     onCancel();
+                } else {
+                    onClear();
+                    t.consume();
                 }
             }
         } );
@@ -90,6 +104,8 @@ public abstract class DefaultEditor<T> extends Dialog<T> {
     protected abstract void setSource( T source );
 
     private ButtonType saveBtn   = new ButtonType( "Salvar",   ButtonBar.ButtonData.OK_DONE );
+    private ButtonType clearButton = new ButtonType( "Limpar", ButtonBar.ButtonData.BACK_PREVIOUS );
     private ButtonType cancelBtn = new ButtonType( "Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE );
+
     private ButtonType selectedBtn;
 }

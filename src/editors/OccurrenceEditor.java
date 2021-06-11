@@ -127,6 +127,7 @@ public class OccurrenceEditor extends DefaultEditor<Occurrence> {
 
         cbPrisoner.setPrefWidth(300);
         cbAuthor.setPrefWidth(300);
+        cbOccurrenceType.setPrefWidth(300);
         cbAuthor.setDisable(true);
         dpCreatedDate.setDisable(true);
 

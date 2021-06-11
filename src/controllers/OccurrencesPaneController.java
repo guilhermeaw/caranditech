@@ -6,6 +6,8 @@ import db.managers.OccurrenceTypeManager;
 import db.managers.PrisonerManager;
 import db.managers.UserManager;
 import editors.OccurrenceEditor;
+import filters.data.OccurrenceFilter;
+import filters.editors.OccurrenceFilterEditor;
 import formatters.DateFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -78,7 +80,7 @@ public class OccurrencesPaneController implements Initializable {
 
     public void refreshContent() {
         try {
-            List<Occurrence> occurrences = OccurrenceManager.getInstance().getAll();
+            List<Occurrence> occurrences = OccurrenceManager.getInstance().getByFilter(filter);
 
             ObservableList<Occurrence> occurrenceObservableList = FXCollections.observableArrayList(occurrences);
 
@@ -185,6 +187,19 @@ public class OccurrencesPaneController implements Initializable {
         }
     }
 
+    public void handleOpenFilter() {
+        new OccurrenceFilterEditor(new EditorCallback<OccurrenceFilter>(filter) {
+            @Override
+            public void onEvent() {
+                try {
+                    refreshContent();
+                } catch ( Exception e ) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } ).open();
+    }
+
     private Prisoner getPrisonerById(int id) {
         try {
             return PrisonerManager.getInstance().getById(id);
@@ -214,4 +229,6 @@ public class OccurrencesPaneController implements Initializable {
 
         return null;
     }
+
+    private OccurrenceFilter filter = new OccurrenceFilter();
 }

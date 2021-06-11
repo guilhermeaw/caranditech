@@ -2,6 +2,7 @@ package db.transactions;
 
 import db.Database;
 import db.Schema;
+import filters.data.OccurrenceFilter;
 import models.Occurrence;
 import models.Occurrence;
 
@@ -76,5 +77,45 @@ public class OccurrenceManagerTransactions {
                 " where " + OC.columns.STATE + " <> " + Occurrence.STATE_DELETED;
 
         return db.fetchMany(sql, OC.fetcher);
+    }
+
+    public List<Occurrence> getByFilter(OccurrenceFilter filter, Database db) throws Exception {
+        Schema.Occurrences OC = Schema.Occurrences.table;
+
+        String sql = OC.select;
+        sql += composeFilterConditions(filter, db);
+
+        System.out.println(sql);
+
+        return db.fetchMany(sql, OC.fetcher);
+    }
+
+    private String composeFilterConditions(OccurrenceFilter filter, Database db) {
+        Schema.Occurrences OC = Schema.Occurrences.table;
+
+        String sql = " where " + OC.columns.STATE + " = " + filter.getState();
+
+        if (filter.getOccurrenceType() != null) {
+            sql += " and " + OC.columns.REF_OCCURRENCE_TYPE + " = " + filter.getOccurrenceType().getId();
+        }
+
+        if (filter.getAuthor() != null) {
+            sql += " and " + OC.columns.REF_USER + " = " + filter.getAuthor().getId();
+        }
+
+        if (filter.getTitle() != null && !filter.getTitle().trim().isEmpty()) {
+            sql += " and " + OC.columns.TITLE + " like " + db.quote("%" + filter.getTitle() + "%");
+        }
+
+        if (filter.getPrisoner() != null) {
+            sql += " and " + OC.columns.REF_PRISONER + " = " + filter.getPrisoner().getId();
+        }
+
+        if (filter.getStartDateRange() != null && filter.getEndDateRange() != null) {
+            sql += " and " + OC.columns.CREATED_DATE + " >= " + db.quote(filter.getStartDateRange());
+            sql += " and " + OC.columns.CREATED_DATE + " <= " + db.quote(filter.getEndDateRange());
+        }
+
+        return sql;
     }
 }
