@@ -62,8 +62,8 @@
       </HBox>
       <TableView fx:id="cellsTable" layoutX="34.0" layoutY="70.0" prefHeight="430.0" prefWidth="637.0">
          <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="636.0" text="Nome" />
-            <TableColumn fx:id="wingColumn" prefWidth="75.0" text="Ala" />
+            <TableColumn fx:id="nameColumn" prefWidth="390.0" text="Nome" />
+            <TableColumn fx:id="wingColumn" prefWidth="246.0" text="Ala" />
          </columns>
       </TableView>
    </children>

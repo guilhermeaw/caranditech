@@ -136,9 +136,9 @@ public class OccurrenceFilterEditor extends DefaultEditor<OccurrenceFilter> {
         activeClearButton();
         loadComboItems();
 
-        grid.setPadding(new Insets(575));
+        grid.setPadding(new Insets(580));
         grid.setStyle("-fx-padding: 30;");
-        grid.setPrefWidth(575);
+        grid.setPrefWidth(580);
         grid.setVgap(15);
         grid.setHgap(15);
 
