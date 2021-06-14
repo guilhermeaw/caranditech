@@ -64,8 +64,8 @@ public class EmployeeEditor extends DefaultEditor<Employee> {
     protected void setSource(Employee source) {
         if (source.getId() != 0) {
             tfName.setText(source.getName());
-            tfCpf.setText(source.getCpf());
-            tfPhone.setText(source.getPhone());
+            tfCpf.setPlainText(source.getCpf());
+            tfPhone.setPlainText(source.getPhone());
             cbOccupation.setValue(getOccupationById(source.getOccupationId()));
             cbWing.setValue(getWingById(source.getWingId()));
         }

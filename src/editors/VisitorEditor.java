@@ -49,8 +49,8 @@ public class VisitorEditor extends DefaultEditor<Visitor> {
     protected void setSource(Visitor source) {
         if (source.getId() != 0) {
             tfName.setText(source.getName());
-            tfCpf.setText(source.getCpf());
-            tfPhone.setText(source.getPhone());
+            tfCpf.setPlainText(source.getCpf());
+            tfPhone.setPlainText(source.getPhone());
         }
     }
 
