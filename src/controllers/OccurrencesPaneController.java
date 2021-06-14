@@ -1,6 +1,7 @@
 package controllers;
 
 import common.EditorCallback;
+import common.Tooltip;
 import db.managers.OccurrenceManager;
 import db.managers.OccurrenceTypeManager;
 import db.managers.PrisonerManager;
@@ -60,8 +61,15 @@ public class OccurrencesPaneController implements Initializable {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private Button printButton;
+
+    @FXML
+    private Button filterButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadTooltips();
         refreshContent();
 
         editButton.setDisable(true);
@@ -228,6 +236,11 @@ public class OccurrencesPaneController implements Initializable {
         }
 
         return null;
+    }
+
+    private void loadTooltips() {
+        printButton.setTooltip(new Tooltip("Imprimir relatório de ocorrências"));
+        filterButton.setTooltip(new Tooltip("Filtrar ocorrências"));
     }
 
     private OccurrenceFilter filter = new OccurrenceFilter();

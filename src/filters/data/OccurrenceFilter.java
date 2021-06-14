@@ -1,5 +1,6 @@
 package filters.data;
 
+import common.Identity;
 import models.OccurrenceType;
 import models.Prisoner;
 import models.User;
@@ -13,7 +14,7 @@ public class OccurrenceFilter {
     private String title = "";
     private Date startDateRange = null;
     private Date endDateRange = null;
-    private int state = 1;
+    private int state = Identity.STATE_ACTIVE;
 
     public OccurrenceFilter() {}
 

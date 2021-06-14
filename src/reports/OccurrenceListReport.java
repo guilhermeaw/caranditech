@@ -4,6 +4,7 @@ import com.itextpdf.text.Document;
 import common.ReportToolkit;
 import db.managers.PrisonerManager;
 import db.managers.UserManager;
+import formatters.DateFormatter;
 import models.Occurrence;
 import models.Prisoner;
 import models.User;
@@ -64,7 +65,7 @@ public class OccurrenceListReport extends ReportToolkit
                     occurrence.getTitle(),
                     prisoner != null ? prisoner.getName() : "n/d",
                     author != null ? author.getName() : "n/d",
-                    occurrence.getCreatedDate().toString(),
+                    DateFormatter.format(occurrence.getCreatedDate()),
                     description != null ? description : "n/d");
         }
 

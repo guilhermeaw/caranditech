@@ -4,6 +4,7 @@ import com.itextpdf.text.Document;
 import common.ReportToolkit;
 import db.managers.CellManager;
 import db.managers.PrisonerTypeManager;
+import formatters.DateFormatter;
 import models.Cell;
 import models.Prisoner;
 import models.PrisonerType;
@@ -65,8 +66,8 @@ public class PrisonersListReport extends ReportToolkit
                     prisoner.getName(),
                     cell != null ? cell.getName() : "n/d",
                     prisonerType != null ? prisonerType.getName() : "n/d",
-                    prisoner.getEnterDate().toString(),
-                    exitDate != null ? exitDate.toString() : "n/d");
+                    DateFormatter.format(prisoner.getEnterDate()),
+                    exitDate != null ? DateFormatter.format(exitDate) : "n/d");
         }
 
         document.add( table );

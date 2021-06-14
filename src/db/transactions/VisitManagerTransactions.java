@@ -2,6 +2,7 @@ package db.transactions;
 
 import db.Database;
 import db.Schema;
+import filters.data.VisitFilter;
 import models.Visit;
 
 import java.util.List;
@@ -66,5 +67,35 @@ public class VisitManagerTransactions {
                 " where " + V.columns.STATE + " <> " + Visit.STATE_DELETED;
 
         return db.fetchMany(sql, V.fetcher);
+    }
+
+    public List<Visit> getByFilter(VisitFilter filter, Database db) throws Exception {
+        Schema.Visits OC = Schema.Visits.table;
+
+        String sql = OC.select;
+        sql += composeFilterConditions(filter, db);
+
+        return db.fetchMany(sql, OC.fetcher);
+    }
+
+    private String composeFilterConditions(VisitFilter filter, Database db) {
+        Schema.Visits OC = Schema.Visits.table;
+
+        String sql = " where " + OC.columns.STATE + " = " + filter.getState();
+
+        if (filter.getPrisoner() != null) {
+            sql += " and " + OC.columns.REF_PRISONER + " = " + filter.getPrisoner().getId();
+        }
+
+        if (filter.getVisitor() != null) {
+            sql += " and " + OC.columns.REF_VISITOR + " = " + filter.getVisitor().getId();
+        }
+
+        if (filter.getStartScheduleDateRange() != null && filter.getEndScheduleDateRange() != null) {
+            sql += " and " + OC.columns.SCHEDULE_DATE + " >= " + db.quote(filter.getStartScheduleDateRange());
+            sql += " and " + OC.columns.SCHEDULE_DATE + " <= " + db.quote(filter.getEndScheduleDateRange());
+        }
+
+        return sql;
     }
 }

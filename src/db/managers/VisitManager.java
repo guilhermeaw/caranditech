@@ -2,6 +2,7 @@ package db.managers;
 
 import db.Database;
 import db.transactions.VisitManagerTransactions;
+import filters.data.VisitFilter;
 import models.Visit;
 
 import java.util.List;
@@ -64,6 +65,16 @@ public class VisitManager implements DefaultManager<Visit> {
 
         try {
             return transactions.getAll(db);
+        } finally {
+            db.release();
+        }
+    }
+
+    public List<Visit> getByFilter(VisitFilter filter) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.getByFilter(filter, db);
         } finally {
             db.release();
         }

@@ -85,8 +85,6 @@ public class OccurrenceManagerTransactions {
         String sql = OC.select;
         sql += composeFilterConditions(filter, db);
 
-        System.out.println(sql);
-
         return db.fetchMany(sql, OC.fetcher);
     }
 

@@ -1,10 +1,13 @@
 package controllers;
 
 import common.EditorCallback;
+import common.Tooltip;
 import db.managers.PrisonerManager;
 import db.managers.VisitManager;
 import db.managers.VisitorManager;
 import editors.VisitEditor;
+import filters.data.VisitFilter;
+import filters.editors.VisitFilterEditor;
 import formatters.DateFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,9 +20,13 @@ import javafx.scene.control.TableView;
 import models.Prisoner;
 import models.Visit;
 import models.Visitor;
+import reports.VisitListReport;
+import reports.VisitReport;
 import services.AlertService;
 import utils.ApplicationUtilities;
+import utils.FileUtilities;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -43,8 +50,15 @@ public class VisitsPaneController implements Initializable {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private Button filterButton;
+
+    @FXML
+    private Button printButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadTooltips();
         refreshContent();
 
         editButton.setDisable(true);
@@ -63,7 +77,7 @@ public class VisitsPaneController implements Initializable {
 
     public void refreshContent() {
         try {
-            List<Visit> visits = VisitManager.getInstance().getAll();
+            List<Visit> visits = VisitManager.getInstance().getByFilter(filter);
 
             ObservableList<Visit> visitObservableList = FXCollections.observableArrayList(visits);
 
@@ -139,6 +153,43 @@ public class VisitsPaneController implements Initializable {
         }
     }
 
+    public void handlePrint() {
+        try {
+            Visit selectedVisit = visitsTable.getSelectionModel().getSelectedItem();
+
+            if (selectedVisit != null) {
+                File file = FileUtilities.saveFile( "Imprimir Relatório", "VisitReport-" + System.currentTimeMillis() +".pdf" );
+
+                if (file != null) {
+                    VisitReport report = new VisitReport(selectedVisit);
+                    report.generatePDF(file);
+                }
+            } else {
+                File file = FileUtilities.saveFile( "Imprimir Relatório", "VisitListReport-" + System.currentTimeMillis() +".pdf" );
+
+                if (file != null) {
+                    VisitListReport report = new VisitListReport(VisitManager.getInstance().getByFilter(filter));
+                    report.generatePDF(file);
+                }
+            }
+        } catch (Exception e) {
+            ApplicationUtilities.getInstance().handleException(e);
+        }
+    }
+
+    public void handleOpenFilter() {
+        new VisitFilterEditor(new EditorCallback<VisitFilter>(filter) {
+            @Override
+            public void onEvent() {
+                try {
+                    refreshContent();
+                } catch ( Exception e ) {
+                    ApplicationUtilities.getInstance().handleException(e);
+                }
+            }
+        } ).open();
+    }
+
     private Prisoner getPrisonerById(int id) {
         try {
             return PrisonerManager.getInstance().getById(id);
@@ -158,4 +209,11 @@ public class VisitsPaneController implements Initializable {
 
         return null;
     }
+
+    private void loadTooltips() {
+        printButton.setTooltip(new Tooltip("Imprimir relatório de visitas"));
+        filterButton.setTooltip(new Tooltip("Filtrar visitas"));
+    }
+
+    private VisitFilter filter = new VisitFilter();
 }

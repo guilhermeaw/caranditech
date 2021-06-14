@@ -20,8 +20,32 @@
          </font>
       </Label>
       <Line endX="-7.98046875" layoutX="117.0" layoutY="49.0" startX="-80.0" />
-      <HBox layoutX="336.0" layoutY="16.0" spacing="16.0">
+      <HBox layoutX="226.0" layoutY="16.0" spacing="16.0">
          <children>
+            <Button fx:id="filterButton" mnemonicParsing="false" onAction="#handleOpenFilter" prefHeight="32.0" prefWidth="39.0" styleClass="add-button" stylesheets="@../dashboard.css" textFill="#f4f4f4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0">
+                     <image>
+                        <Image url="@../../res/images/filter.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="printButton" mnemonicParsing="false" onAction="#handlePrint" prefHeight="32.0" prefWidth="39.0" styleClass="add-button" stylesheets="@../dashboard.css" textFill="#f4f4f4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="12.0" fitWidth="12.0">
+                     <image>
+                        <Image url="@../../res/images/print.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Button mnemonicParsing="false" onAction="#handleAddVisit" prefHeight="32.0" prefWidth="101.0" styleClass="add-button" stylesheets="@../dashboard.css" text="Adicionar" textFill="#f4f4f4">
                <font>
                   <Font name="System Bold" size="12.0" />
