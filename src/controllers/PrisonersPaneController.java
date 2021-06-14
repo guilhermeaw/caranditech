@@ -1,6 +1,7 @@
 package controllers;
 
 import common.EditorCallback;
+import common.Tooltip;
 import db.managers.CellManager;
 import db.managers.PrisonerManager;
 import db.managers.PrisonerTypeManager;
@@ -54,8 +55,12 @@ public class PrisonersPaneController implements Initializable {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private Button printButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        printButton.setTooltip(new Tooltip("Imprimir relatório de prisioneiros"));
         refreshContent();
 
         editButton.setDisable(true);
