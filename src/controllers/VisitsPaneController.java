@@ -104,8 +104,14 @@ public class VisitsPaneController implements Initializable {
             @Override
             public void onEvent() {
                 try {
-                    VisitManager.getInstance().create((Visit) getSource());
+                    boolean hasVisit = VisitManager.getInstance().hasVisit((Visit) getSource());
 
+                    if (hasVisit) {
+                        AlertService.showWarning("Já existe uma visita para esse prisioneiro na data selecionada");
+                        return;
+                    }
+
+                    VisitManager.getInstance().create((Visit) getSource());
                     refreshContent();
                 } catch ( Exception e ) {
                     ApplicationUtilities.getInstance().handleException(e);

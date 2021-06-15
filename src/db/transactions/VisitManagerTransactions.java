@@ -98,4 +98,14 @@ public class VisitManagerTransactions {
 
         return sql;
     }
+
+    public boolean hasVisit(Visit visit, Database db) throws Exception {
+        Schema.Visits V = Schema.Visits.table;
+
+        String sql = V.select +
+                " where " + V.columns.SCHEDULE_DATE + " = " + db.quote(visit.getScheduleDate()) +
+                " and " + V.columns.REF_PRISONER + " = " + visit.getPrisonerId();
+
+        return db.fetchOne(sql, V.fetcher) != null;
+    }
 }

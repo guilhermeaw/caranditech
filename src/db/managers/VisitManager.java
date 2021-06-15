@@ -79,4 +79,14 @@ public class VisitManager implements DefaultManager<Visit> {
             db.release();
         }
     }
+
+    public boolean hasVisit(Visit visit) throws Exception {
+        Database db = Database.getInstance();
+
+        try {
+            return transactions.hasVisit(visit, db);
+        } finally {
+            db.release();
+        }
+    }
 }

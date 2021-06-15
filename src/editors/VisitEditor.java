@@ -15,6 +15,7 @@ import javafx.scene.layout.Priority;
 import models.*;
 import utils.DateUtils;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,8 +28,12 @@ public class VisitEditor extends DefaultEditor<Visit> {
 
     @Override
     protected void validateInput(List<String> errors) throws Exception {
-        if (dpScheduleDate.getValue() == null) {
+        LocalDate scheduleDate = dpScheduleDate.getValue();
+
+        if (dpScheduleDate == null) {
             errors.add("É necessário informar uma data");
+        } else if (scheduleDate.isBefore(LocalDate.now())) {
+            errors.add("A data deve ser posterior à data atual");
         }
 
         if (cbPrisoner.getValue() == null) {
