@@ -31,11 +31,17 @@ public class UserManagerTransactions {
     public void update(User user, Database db) throws Exception {
         Schema.Users U = Schema.Users.table;
 
+        String password = user.getPassword().trim();
+
         String sql = "update " + U.name + " set " +
-                U.columns.LOGIN + " = " + db.quote(user.getLogin()) + ", " +
-                U.columns.PASSWORD + " = " + db.quote(user.getPassword()) + ", " +
-                U.columns.NAME + " = " + db.quote(user.getName()) +
-                " where " + U.columns.ID + " = " + user.getId();
+                U.columns.LOGIN + " = " + db.quote(user.getLogin()) + ", ";
+
+        if (!password.isEmpty()) {
+            sql += U.columns.PASSWORD + " = " + db.quote(user.getPassword()) + ", ";
+        }
+
+        sql += U.columns.NAME + " = " + db.quote(user.getName()) +
+        " where " + U.columns.ID + " = " + user.getId();
 
         db.executeCommand(sql);
     }

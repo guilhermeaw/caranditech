@@ -80,15 +80,8 @@ public class VisitFilterEditor extends DefaultEditor<VisitFilter> {
 
         cbPrisoner.setValue(source.getPrisoner());
         cbVisitor.setValue(source.getVisitor());
-
-        if (startDate != null) {
-            dpStartScheduleDate.setValue(DateUtils.getLocalDateByDate(startDate));
-        }
-
-        if (endDate != null) {
-            dpEndScheduleDate.setValue(DateUtils.getLocalDateByDate(endDate));
-        }
-
+        dpStartScheduleDate.setValue(startDate != null ? DateUtils.getLocalDateByDate(startDate) : null);
+        dpEndScheduleDate.setValue(endDate != null ? DateUtils.getLocalDateByDate(endDate) : null);
         cbState.setValue(Identity.STATES_MAP.get(source.getState()));
     }
 

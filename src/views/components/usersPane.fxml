@@ -66,7 +66,7 @@
             </Label>
             <HBox alignment="TOP_CENTER" spacing="16.0">
                <children>
-                  <Label prefHeight="25.0" prefWidth="81.0" text="Login: *">
+                  <Label prefHeight="25.0" prefWidth="264.0" text="Login: *">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -74,12 +74,12 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="tfUserLogin" prefHeight="25.0" prefWidth="599.0" />
+                  <TextField fx:id="tfUserLogin" prefHeight="25.0" prefWidth="658.0" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" spacing="16.0">
                <children>
-                  <Label prefHeight="25.0" prefWidth="142.0" text="Senha: *">
+                  <Label prefHeight="25.0" prefWidth="264.0" text="Senha:">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -87,7 +87,20 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <PasswordField fx:id="tfUserPassword" prefHeight="25.0" prefWidth="659.0" />
+                  <PasswordField fx:id="tfUserPassword" prefHeight="25.0" prefWidth="658.0" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" spacing="16.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="264.0" text="Confirmar senha:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <PasswordField fx:id="tfConfirmPassword" prefHeight="25.0" prefWidth="658.0" />
                </children>
             </HBox>
             <HBox alignment="TOP_RIGHT" prefWidth="657.0">

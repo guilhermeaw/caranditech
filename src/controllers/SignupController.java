@@ -9,6 +9,9 @@ import services.SceneChangerService;
 import services.UserService;
 import utils.ApplicationUtilities;
 import validators.EmptyValidator;
+import validators.LoginValidator;
+import validators.NameValidator;
+import validators.PasswordValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,20 +61,23 @@ public class SignupController {
     }
 
     private void validateFields(List<String> errors) {
-        if (!EmptyValidator.validate(loginField.getText())) {
-            errors.add("É necessário informar um login");
+        String password = passwordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+
+        if (!LoginValidator.validate(loginField.getText())) {
+            errors.add("É necessário informar um login com pelo menos 4 caracteres");
         }
 
-        if (!EmptyValidator.validate(nameField.getText())) {
-            errors.add("É necessário informar um nome");
+        if (!NameValidator.validate(nameField.getText())) {
+            errors.add("É necessário informar o nome completo");
         }
 
-        if (!EmptyValidator.validate(passwordField.getText())) {
-            errors.add("É necessário informar uma senha");
+        if (!PasswordValidator.validate(password)) {
+            errors.add("A senha deve ter mais de 4 caracteres");
         }
 
-        if (!EmptyValidator.validate(confirmPasswordField.getText())) {
-            errors.add("É necessário informar a confirmação de senha");
+        if (!password.equals(confirmPassword)) {
+            errors.add("A senha e a confirmação de senha devem ser iguais");
         }
     }
 }

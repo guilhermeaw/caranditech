@@ -88,15 +88,8 @@ public class OccurrenceFilterEditor extends DefaultEditor<OccurrenceFilter> {
         cbOccurrenceType.setValue(source.getOccurrenceType());
         cbPrisoner.setValue(source.getPrisoner());
         cbAuthor.setValue(source.getAuthor());
-
-        if (startDate != null) {
-            dpStartCreatedDate.setValue(DateUtils.getLocalDateByDate(startDate));
-        }
-
-        if (endDate != null) {
-            dpEndCreatedDate.setValue(DateUtils.getLocalDateByDate(endDate));
-        }
-
+        dpStartCreatedDate.setValue(startDate != null ? DateUtils.getLocalDateByDate(startDate) : null);
+        dpEndCreatedDate.setValue(endDate != null ? DateUtils.getLocalDateByDate(endDate) : null);
         cbState.setValue(Identity.STATES_MAP.get(source.getState()));
     }
 
