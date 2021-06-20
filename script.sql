@@ -6,11 +6,6 @@ CREATE TABLE cells (
 	CONSTRAINT cells_pkey PRIMARY KEY (id)
 );
 
-
--- public.cells foreign keys
-
-ALTER TABLE public.cells ADD CONSTRAINT cells_fk_wing_id FOREIGN KEY (ref_wing) REFERENCES wings(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
 CREATE TABLE employees (
 	id serial NOT NULL,
 	"name" varchar(100) NOT NULL,
@@ -21,11 +16,6 @@ CREATE TABLE employees (
 	ref_wing int4 NOT NULL,
 	CONSTRAINT employees_pkey PRIMARY KEY (id)
 );
-
-
--- public.employees foreign keys
-
-ALTER TABLE public.employees ADD CONSTRAINT employees_fk_occupation_id FOREIGN KEY (ref_occupation) REFERENCES occupations(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 CREATE TABLE occupations (
 	id serial NOT NULL,
@@ -44,12 +34,6 @@ CREATE TABLE occupations_employees_mappings (
 	CONSTRAINT occupations_employees_mappings_pk PRIMARY KEY (ref_occupation, ref_employee)
 );
 
-
--- public.occupations_employees_mappings foreign keys
-
-ALTER TABLE public.occupations_employees_mappings ADD CONSTRAINT occupations_employees_mappings_fk_employee_id FOREIGN KEY (ref_employee) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE public.occupations_employees_mappings ADD CONSTRAINT occupations_employees_mappings_fk_occupation_id FOREIGN KEY (ref_occupation) REFERENCES occupations(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
 CREATE TABLE occurrences (
 	id serial NOT NULL,
 	title varchar(100) NOT NULL,
@@ -60,12 +44,6 @@ CREATE TABLE occurrences (
 	created_date timestamp NOT NULL,
 	CONSTRAINT occurrences_pkey PRIMARY KEY (id)
 );
-
-
--- public.occurrences foreign keys
-
-ALTER TABLE public.occurrences ADD CONSTRAINT occurrences_fk_prisoner_id FOREIGN KEY (ref_prisoner) REFERENCES prisoners(id) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE public.occurrences ADD CONSTRAINT occurrences_fk_user_id FOREIGN KEY (ref_user) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 CREATE TABLE prisoner_types (
 	id serial NOT NULL,
@@ -86,12 +64,6 @@ CREATE TABLE prisoners (
 	exit_date date NULL,
 	CONSTRAINT prisoners_pkey PRIMARY KEY (id)
 );
-
-
--- public.prisoners foreign keys
-
-ALTER TABLE public.prisoners ADD CONSTRAINT prisoners_fk_cell_id FOREIGN KEY (ref_cell) REFERENCES cells(id) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE public.prisoners ADD CONSTRAINT prisoners_fk_prisoner_type_id FOREIGN KEY (ref_prisoner_type) REFERENCES prisoner_types(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 CREATE TABLE users (
 	id serial NOT NULL,
@@ -120,15 +92,37 @@ CREATE TABLE visits (
 	CONSTRAINT visits_pkey PRIMARY KEY (id)
 );
 
-
--- public.visits foreign keys
-
-ALTER TABLE public.visits ADD CONSTRAINT visits_fk_prisoner_id FOREIGN KEY (ref_prisoner) REFERENCES prisoners(id) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE public.visits ADD CONSTRAINT visits_fk_visitor_id FOREIGN KEY (ref_visitor) REFERENCES visitors(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
 CREATE TABLE wings (
 	id serial NOT NULL,
 	"name" varchar(100) NOT NULL,
 	state int2 NOT NULL DEFAULT '0'::smallint,
 	CONSTRAINT wings_pkey PRIMARY KEY (id)
 );
+
+-- public.cells foreign keys
+
+ALTER TABLE public.cells ADD CONSTRAINT cells_fk_wing_id FOREIGN KEY (ref_wing) REFERENCES wings(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- public.visits foreign keys
+
+ALTER TABLE public.visits ADD CONSTRAINT visits_fk_prisoner_id FOREIGN KEY (ref_prisoner) REFERENCES prisoners(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE public.visits ADD CONSTRAINT visits_fk_visitor_id FOREIGN KEY (ref_visitor) REFERENCES visitors(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- public.prisoners foreign keys
+
+ALTER TABLE public.prisoners ADD CONSTRAINT prisoners_fk_cell_id FOREIGN KEY (ref_cell) REFERENCES cells(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE public.prisoners ADD CONSTRAINT prisoners_fk_prisoner_type_id FOREIGN KEY (ref_prisoner_type) REFERENCES prisoner_types(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- public.employees foreign keys
+
+ALTER TABLE public.employees ADD CONSTRAINT employees_fk_occupation_id FOREIGN KEY (ref_occupation) REFERENCES occupations(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- public.occupations_employees_mappings foreign keys
+
+ALTER TABLE public.occupations_employees_mappings ADD CONSTRAINT occupations_employees_mappings_fk_employee_id FOREIGN KEY (ref_employee) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE public.occupations_employees_mappings ADD CONSTRAINT occupations_employees_mappings_fk_occupation_id FOREIGN KEY (ref_occupation) REFERENCES occupations(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- public.occurrences foreign keys
+
+ALTER TABLE public.occurrences ADD CONSTRAINT occurrences_fk_prisoner_id FOREIGN KEY (ref_prisoner) REFERENCES prisoners(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE public.occurrences ADD CONSTRAINT occurrences_fk_user_id FOREIGN KEY (ref_user) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE;
