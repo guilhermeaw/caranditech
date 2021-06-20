@@ -41,7 +41,7 @@ CREATE TABLE occurrences (
 	state int2 NOT NULL,
 	ref_prisoner int4 NOT NULL,
 	ref_user int4 NOT NULL,
-	created_date timestamp NOT NULL,
+	created_date date NOT NULL,
 	CONSTRAINT occurrences_pkey PRIMARY KEY (id)
 );
 
@@ -85,7 +85,7 @@ CREATE TABLE visitors (
 
 CREATE TABLE visits (
 	id serial NOT NULL,
-	schedule_date timestamp NOT NULL,
+	schedule_date date NOT NULL,
 	state int2 NOT NULL,
 	ref_prisoner int4 NOT NULL,
 	ref_visitor int4 NOT NULL,
