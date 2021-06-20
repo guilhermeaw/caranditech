@@ -104,8 +104,8 @@ public class EmployeeEditor extends DefaultEditor<Employee> {
     }
 
     private void initComponents() {
-        setTitle("Editor de Prisioneiro");
-        setHeaderText("Editor de Prisioneiro");
+        setTitle("Editor de Funcionário");
+        setHeaderText("Editor de Funcionário");
 
         cbOccupation.setPrefWidth(300);
         cbWing.setPrefWidth(300);

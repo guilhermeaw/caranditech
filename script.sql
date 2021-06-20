@@ -22,7 +22,7 @@ CREATE TABLE occupations (
 	"name" varchar(100) NOT NULL,
 	description text NULL,
 	state int2 NOT NULL DEFAULT '0'::smallint,
-	wage numeric(2) NOT NULL DEFAULT 0.00,
+	wage numeric(10) NOT NULL DEFAULT 0.00,
 	CONSTRAINT occupations_pkey PRIMARY KEY (id)
 );
 
@@ -42,13 +42,14 @@ CREATE TABLE occurrences (
 	ref_prisoner int4 NOT NULL,
 	ref_user int4 NOT NULL,
 	created_date date NOT NULL,
+	ref_occurrence_type int4 NOT NULL,
 	CONSTRAINT occurrences_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE prisoner_types (
 	id serial NOT NULL,
 	"name" varchar(100) NOT NULL,
-	profit numeric(2) NOT NULL DEFAULT 0.00,
+	profit numeric(10) NOT NULL DEFAULT 0.00,
 	description text NULL,
 	state int2 NOT NULL,
 	CONSTRAINT prisoner_types_pkey PRIMARY KEY (id)
@@ -99,6 +100,14 @@ CREATE TABLE wings (
 	CONSTRAINT wings_pkey PRIMARY KEY (id)
 );
 
+CREATE TABLE occurrence_types (
+	id serial NOT NULL,
+	"name" varchar(100) NOT NULL,
+	description text NULL,
+	state int2 NOT NULL,
+	CONSTRAINT occurrence_types_pkey PRIMARY KEY (id)
+);
+
 -- public.cells foreign keys
 
 ALTER TABLE public.cells ADD CONSTRAINT cells_fk_wing_id FOREIGN KEY (ref_wing) REFERENCES wings(id) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -126,3 +135,4 @@ ALTER TABLE public.occupations_employees_mappings ADD CONSTRAINT occupations_emp
 
 ALTER TABLE public.occurrences ADD CONSTRAINT occurrences_fk_prisoner_id FOREIGN KEY (ref_prisoner) REFERENCES prisoners(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE public.occurrences ADD CONSTRAINT occurrences_fk_user_id FOREIGN KEY (ref_user) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE public.occurrences ADD CONSTRAINT occurrences_fk_occurrence_type_id FOREIGN KEY (ref_occurrence_type) REFERENCES occurrence_types(id) ON UPDATE CASCADE ON DELETE CASCADE;
